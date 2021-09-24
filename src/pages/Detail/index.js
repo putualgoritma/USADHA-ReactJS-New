@@ -78,7 +78,8 @@ function Detail(props){
                             cartData.push(data)
                             message = 'produk di tambahkan';
                             sessionStorage.setItem('CART', JSON.stringify(cartData))
-                            history.push(`/landing/${message}/home`)
+                            // history.push(`/landing/${message}/home`)
+                            history.goBack(`/landing/${message}/home`);
                       }else{
                             alert('produk sudah ada di keranjang')
                       }
@@ -88,7 +89,11 @@ function Detail(props){
                 }
           }
     }
-
+    if(loading){
+        return (
+              <Spinner/>
+        )
+  }
   
     return(
         <Fragment>
@@ -129,19 +134,19 @@ function Detail(props){
                                             <div className="row row-img">
                                                 <div className="product-img-box col-md-4 col-sm-5">
                                                     <div className="detail-img">
-                                                        <img src={ImageDetail1} alt="alt"/>
+                                                        <img src={(product.img == null ? ImageDetail1 : process.env.REACT_APP_BASE_URL + String(product.img).replace('public/', ''))}alt="alt"/>
                                                     </div>
                                                 </div>
                                                 <div id="product_shop" className="product-shop col-md-8 col-sm-7">
                                                     <div className="item-inner product_list_style">
                                                         <div className="item-info">
                                                             <div className="item-title">
-                                                                <a title="Modular Modern" href="detail.html">Minyak Belog 50ml</a>
+                                                                <a title="Modular Modern" href="detail.html">{product.name}</a>
                                                             </div>
                                                             <div className="item-price">
                                                                 <div className="price-box">
                                                                     <span className="regular-price">
-                                                                        <span className="price">Rp 150.000</span>
+                                                                        <span className="price">{Rupiah(parseInt(product.price))}</span>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -156,7 +161,7 @@ function Detail(props){
                                                                 </div>
                                                             </div>
                                                             <div className="desc std">
-                                                                <h5>Paket User : 1 pcs Minyak Belog 50 ml, Botol cantik BV : 90</h5>
+                                                                <h5>{product.description}</h5>
                                                             </div>
                                                             <div className="actions">
                                                                 <label className="gfont" htmlFor="qty">Qty :
@@ -178,7 +183,7 @@ function Detail(props){
                                                                         onclick="var qty_el = document.getElementById('qty'); var qty = qty_el.value; if( !isNaN( qty )) qty_el.value++;return false;"
                                                                         type="button"/>
                                                                 </div>
-                                                                <button className="btn-cart" title="Add to Cart" data-id="qv_item_8">
+                                                                <button className="btn-cart" title="Add to Cart" data-id="qv_item_8" onClick={() => handleCart()}>
                                                                     Add to Cart
                                                                 </button>
                                                             </div>

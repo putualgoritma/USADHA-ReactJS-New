@@ -33,6 +33,10 @@ import ImageDetail2 from './images/blog-thumb/bt-1.jpg'
 import ImageDetail3 from './images/blog-thumb/bt-2.jpg'
 import ImageDetail4 from './images/blog-thumb/bt-3.jpg'
 import ImageDetail5 from './images/blog-thumb/bt-4.jpg'
+import profile from './images/profile.png'
+import Copy from './images/Copy.png'
+import Share from './images/Share.png'
+import ImageDefault from './images/ImageDefault.jpg'
 
 export {
     Logo,
@@ -69,5 +73,9 @@ export {
     ImageDetail2,
     ImageDetail3,
     ImageDetail4,
-    ImageDetail5
+    ImageDetail5,
+    profile,
+    Copy,
+    Share,
+    ImageDefault
 }

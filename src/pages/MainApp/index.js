@@ -7,13 +7,61 @@ import {
     Testimoni,
     Contact,
     Detail,
-    Login
+    Login,
+    Cart,
+    Profile,
+    TopUp,
+    Transfer,
+    Withdraw,
+    RegisterDownline,
+    Downline,
+    InfoBank,
+    HistoryPoint,
+    HistoryOrder,
+    Agen
 } from '../../pages';
+import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 
 const MainApp = () =>{
     return(
         <Router>
             <Switch>
+                <Route path="/Agen">
+                    <Agen/>
+                </Route>
+                <Route path="/HistoryOrderDetail">
+                    <HistoryOrderDetail/>
+                </Route>
+                <Route path="/HistoryOrder">
+                    <HistoryOrder/>
+                </Route>
+                <Route path="/HistoryPoint">
+                    <HistoryPoint/>
+                </Route>
+                <Route path="/InfoBank">
+                    <InfoBank/>
+                </Route>
+                <Route path="/Downline">
+                    <Downline/>
+                </Route>
+                <Route path="/RegisterDownline">
+                    <RegisterDownline/>
+                </Route>
+                <Route path="/Withdraw">
+                    <Withdraw/>
+                </Route>
+                <Route path="/Transfer">
+                    <Transfer/>
+                </Route>
+                <Route path="/TopUp">
+                    <TopUp/>
+                </Route>
+                <Route path="/Profile">
+                    <Profile/>
+                </Route>
+                <Route path="/Cart">
+                    <Cart/>    
+                </Route>
                 <Route path="/Login">
                     <Login/>    
                 </Route>
