@@ -19,7 +19,8 @@ import {
     Product3,
     Product4,
     Banner1,
-    Banner2
+    Banner2,
+    ImageDefault
 } from "../../assets";
 
 function Home(){
@@ -52,7 +53,11 @@ function Home(){
           }
     }, [])
 
-    
+//     if(loading){
+//         return (
+//               <Spinner/>
+//         )
+//   }
     return (
       <Fragment>
         <Header carousel={
@@ -137,14 +142,16 @@ function Home(){
                                             <div className="item-inner">
                                                 <div className="prd">
                                                     <div className="item-img clearfix">
-                                                        <div
-                                                            className="product-image have-additional"
-                                                            title="Modular Modern"
-                                                            key = {index} onClick={() => history.push("/Detail/" + item.id)}>
-                                                            <span className="img-main">
-                                                                <img src= {(item.img == null ? Product1 :( process.env.REACT_APP_BASE_URL  + String(item.img).replace('public/', '')))} alt="alt"/>
-                                                            </span>
-                                                        </div>
+                                                        <a href={'/Detail/' + item.id}>
+                                                            <div
+                                                                className="product-image have-additional"
+                                                                title="Modular Modern"
+                                                                key = {index}>
+                                                                <span className="img-main">
+                                                                    <img src= {(item.img == null ? ImageDefault :( process.env.REACT_APP_BASE_URL  + String(item.img).replace('public/', '')))} alt="alt"/>
+                                                                </span>
+                                                            </div>
+                                                        </a>
                                                     </div>
                                                     <div className="item-info">
                                                         <div className="info-inner">

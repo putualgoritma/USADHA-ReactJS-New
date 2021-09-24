@@ -1,7 +1,7 @@
 import React,{useEffect,useState}  from "react";
 import { Fragment } from "react";
 import {Header,Footer} from '../../component'
-import { Product1,Product2,Product3,Product4,Product5,Product6,Product7 } from "../../assets";
+import { ImageDefault, Product1,Product2,Product3,Product4 } from "../../assets";
 import API from '../../services'
 import { useHistory } from 'react-router-dom';
 import { Source } from '../../services/Config';
@@ -57,14 +57,16 @@ const Product=()=>{
                                                     <div className="item-inner">
                                                         <div className="prd">
                                                             <div className="item-img clearfix">
-                                                                <div
-                                                                    className="product-image have-additional"
-                                                                    title="Modular Modern"
-                                                                    key = {index} onClick={() => history.push("./Detail/" + item.id)}>
-                                                                    <span className="img-main">
-                                                                        <img src= {(item.img == null ? Product1 :( process.env.REACT_APP_BASE_URL  + String(item.img).replace('public/', '')))} alt="alt"/>
-                                                                    </span>
-                                                                </div>
+                                                                <a href ={'/Detail/'+ item.id}>
+                                                                    <div
+                                                                        className="product-image have-additional"
+                                                                        title="Modular Modern"
+                                                                        key = {index}>
+                                                                        <span className="img-main">
+                                                                            <img src= {(item.img == null ? ImageDefault :( process.env.REACT_APP_BASE_URL  + String(item.img).replace('public/', '')))} alt="alt"/>
+                                                                        </span>
+                                                                    </div>
+                                                                </a>
                                                             </div>
                                                             <div className="item-info">
                                                                 <div className="info-inner">
