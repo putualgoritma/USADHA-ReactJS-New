@@ -102,7 +102,8 @@ function Withdraw  () {
                             });
                             // alert(result.message)
                             // window.location.reload();
-                            history.push(`landing/${result.message}/withdraw`)
+                            // history.push(`landing/${result.message}/withdraw`)
+                             history.goBack(`landing/${result.message}/withdraw`)
                       }).catch((e) => {
                             console.log(e.request)
                             alert('withdraw gagal')
@@ -161,6 +162,18 @@ function Withdraw  () {
                     </div>
                 </div>
                 <div className="col-md-12">
+                        <div className="row">
+                            <div className ="col-md-2"></div>
+                            <div className ="col-md-8">
+                            <span style={{fontWeight:500, fontSize:13}}>No Rek</span>
+                                <div className="mb-3">
+                                    <input className="form-control" type="number" style={{padding:20}}  placeholder='******' min={0} onChange={(value) => onChangeForm('bank_acc_no', value.target.value)}/>
+                                </div>
+                            </div>
+                            <div className ="col-md-2"></div>
+                        </div>
+                    </div>
+                <div className="col-md-12">
                     <div className="row">
                         <div className ="col-md-2"></div>
                         <div className="col-md-8">
@@ -187,17 +200,18 @@ function Withdraw  () {
                     </div>
                 </div>
                 <div className="col-md-12">
-                    <div className="row">
-                        <div className ="col-md-2"></div>
-                        <div className ="col-md-8">
-                        <span style={{fontWeight:500, fontSize:13}}>Atau masukan nominal Topup disini</span>
-                            <div className="mb-3">
-                            <input type = 'number' className='form-control input-nominal mb-3' value={form.amount} onChange={(value)=> onChangeForm('amount', value.target.value)}/>
+                        <div className="row">
+                            <div className ="col-md-2"></div>
+                            <div className ="col-md-8">
+                            <span style={{fontWeight:500, fontSize:13}}>Atau masukan nominal Topup disini</span>
+                                <div className="mb-3">
+                                    <input className="form-control" type="number" style={{padding:20}}  value={form.amount} onChange={(value)=> onChangeForm('amount', value.target.value)}/>
+                                </div>
                             </div>
+                            <div className ="col-md-2"></div>
                         </div>
-                        <div className ="col-md-2"></div>
                     </div>
-                </div>
+               
                 <div className="col-md-12">
                     <div className="row">
                         <div className ="col-md-2"></div>

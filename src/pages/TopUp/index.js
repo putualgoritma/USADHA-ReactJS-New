@@ -98,8 +98,14 @@ function TopUp  () {
                             accounts_id : null,
                             amount : 0,
                       });
-                      // alert(result.message)
-                      history.push(`landing/${result.message}/topup`)
+                      
+                    //   history.push(`landing/${result.message}/topup`)
+                      history.goBack(`landing/${result.message}/topup`)
+                      
+                      alert(result.message)
+                    
+                     
+                
                       // setLoading(false)
                       // window.location.reload();
                 }).catch((e) => {

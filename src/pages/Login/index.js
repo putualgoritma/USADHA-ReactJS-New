@@ -50,8 +50,8 @@ const Login = ()=>{
                               id_onesignal:null
                         })
                         setLoading(false)
-                        // history.push("/");
-                        history.goBack("/");
+                        history.push("/");
+                        // history.goBack("/");
                         
                   }).catch((e) => {
                         console.log(e.request);
@@ -205,7 +205,42 @@ const Login = ()=>{
       <div className="container">
         <div className="login">
           <form>
-            <div className="col-lg-12 col-md-12">
+            <div className="row  mb-1">
+                <div className="col-md-6 col-md-offset-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                        <input
+                            type="email"
+                            className="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="name@example.com"
+                            onChange={(value) => onChangeForm('email', value.target.value)}/>
+                </div>
+            </div>
+            <div className="row mb-2">
+                <div className="col-md-6 col-md-offset-3">
+                  <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                        <input
+                          type="password"
+                          className="form-control"
+                          id="exampleFormControlInput2"
+                          placeholder="******"
+                          onChange={(value) => onChangeForm('password', value.target.value)}/>
+                 </div>
+            </div>
+            <div className="mb-3">
+              <button
+                  type='submit'
+                  className='button1'
+                  onClick={() => {handleLogin()}
+                  }>
+                  Login
+                  </button><br/>
+                    <button className="button1">
+                      <Link to="/Register" style={{color:'white'}}>Register</Link>
+                    </button>
+            </div>     
+
+            {/* <div className="col-lg-12 col-md-12">
               <div className="mb-1">
                 <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                                 <input
@@ -224,17 +259,8 @@ const Login = ()=>{
                                     placeholder="******"
                                     onChange={(value) => onChangeForm('password', value.target.value)}/>
               </div><br />
-              <div className="mb-3">
-              <button
-                  type='submit'
-                  className='button1'
-                  onClick={() => {handleLogin()}
-                  }>
-                  Login
-                  </button><br/>
-                <button className="button1" type="button">Register</button>
-              </div>     
-            </div>
+            
+            </div> */}
           </form>
         </div>
       </div>

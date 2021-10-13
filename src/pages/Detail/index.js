@@ -225,15 +225,12 @@ function Detail(props){
                                                 <div role="tabpanel" className="tab-pane active" id="home">
                                                     <div className="style1">
                                                         <p className="top">
-                                                            <strong>Khasiat :
-                                                            </strong>
-                                                            <br/>Membantu meringankan nyeri persendian, nyeri otot dan pegal linu,
-                                                                gatal-gatal pada kulit, relaksasi otot, kesemutan, kram, sakit kepala, perut
-                                                                kembung, membantu menangani luka, membantu menangani gejala penyakit generatif
-                                                                (diabetes, stroke, jantung, hati, parkingson) membantu melawan mikroba dan
-                                                                sebagai hand sanitizer.
+                                                            {/* <strong>Khasiat :
+                                                            </strong> */}
+                                                            {/* <br/> */}
+                                                            <strong>{product.description}</strong>
                                                         </p>
-                                                        <p className="mid">
+                                                        {/* <p className="mid">
                                                             <strong>Cara Penggunaan :</strong>
                                                             <br/>Teteskan dan oleskan pada bagian yang sakit, atau balurkan pada tulang
                                                                 punggung dari leher sampai tulang ekor, serta pada bagian dada setiap malam
@@ -248,7 +245,7 @@ function Detail(props){
                                                             <br/>
                                                             Messua Ferrea Frutus : 10%
                                                             <br/>
-                                                        </p>
+                                                        </p> */}
                                                     </div>
                                                 </div>
                                                 <div role="tabpanel" className="tab-pane" id="profile">

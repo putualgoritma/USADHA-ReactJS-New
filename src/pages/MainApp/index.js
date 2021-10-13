@@ -18,7 +18,9 @@ import {
     InfoBank,
     HistoryPoint,
     HistoryOrder,
-    Agen
+    Agen,
+    Checkout,
+    Register
 } from '../../pages';
 import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 
@@ -26,6 +28,12 @@ const MainApp = () =>{
     return(
         <Router>
             <Switch>
+                <Route path='/Register'>
+                        <Register/>
+                </Route>
+                <Route path='/checkout/:id'>
+                        <Checkout/>
+                </Route>
                 <Route path="/Agen">
                     <Agen/>
                 </Route>

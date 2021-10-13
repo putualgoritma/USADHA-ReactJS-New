@@ -16,6 +16,8 @@ import InfoBank from './InfoBank'
 import HistoryPoint from './HistoryPoint'
 import HistoryOrder from './HistoryOrder'
 import Agen from './Agen'
+import Checkout from './Checkout'
+import Register from './Register'
 
 export{
     Home,
@@ -35,5 +37,7 @@ export{
     InfoBank,
     HistoryPoint,
     HistoryOrder,
-    Agen
+    Agen,
+    Checkout,
+    Register
 }

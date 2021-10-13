@@ -77,10 +77,12 @@ const ItemSideBar = (props) => {
             </a>
           </li>
           <li>
+            
             <a onClick={props.logout}>
               <i className="bx bxs-log-out" />
               <span className="links_name" >Logout</span>
             </a>
+
           </li>
         </ul>
       </div>
@@ -169,6 +171,14 @@ const Header = (props)=>{
           })  
     }
 
+    const myAccount = () => {
+        if(!USER){
+            alert('mohon login terlebih dahulu')
+            history.push(`/login`)
+        }else{
+            history.push(`/Profile`)
+        }
+    }
     
     if(loading){
           return (
@@ -203,7 +213,7 @@ const Header = (props)=>{
                                             <div className="customer-ct content">
                                                 <ul className="links">
                                                     <li className="first">
-                                                        <a className="top-link-myaccount" title="My Account" href='/Profile'>My Account</a>
+                                                        <a className="top-link-myaccount" title="My Account"onClick={() => myAccount()}>My Account</a>
                                                     </li>
                                                     <li>
                                                         <a className="top-link-checkout" title="Checkout" href="#">Checkout</a>
