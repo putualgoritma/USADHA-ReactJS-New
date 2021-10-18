@@ -20,7 +20,6 @@ const ItemSideBar = (props) => {
           </li>
           <hr className="new5" />
           <li>
-              
             <a>
               <i className="bx bx-money bx-md" />
               <span className="links_name">Saldo Point : </span>
