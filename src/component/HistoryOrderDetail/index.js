@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useHistory, withRouter } from 'react-router';
 import { Footer, Spinner } from '..';
-import { ImageDetail1 } from '../../assets';
+import { ImageDefault } from '../../assets';
 import { Rupiah } from '../../helper/Rupiah';
 import API from '../../services';
 import { Header } from '..';
@@ -29,7 +29,7 @@ const ItemHistory =(props) => {
                     </div>
                 </div>
             </div>
-            <div id="sns_content" className="wrap layout-m">
+            
                 <div className="container">
                     <div className="row">
                         <div id="sns_main" className="col-md-12 col-main">
@@ -39,7 +39,8 @@ const ItemHistory =(props) => {
                                         <div className="row row-img">
                                             <div className="product-img-box col-md-4 col-sm-5">
                                                 <div className="detail-img">
-                                                <img src={ (props.dataOrder.img === null ? ImageDetail1 : process.env.REACT_APP_BASE_URL +String(props.dataOrder.img).replace('public/', ''))} alt='img' />
+                                                {/* <img src={ (props.dataOrder.img === null ? ImageDefault : process.env.REACT_APP_BASE_URL +String(props.dataOrder.img).replace('public/', ''))} alt='img' /> */}
+                                                <img src={ImageDefault} alt='img' />
                                                 </div>
                                             </div>
                                             <div id="product_shop" className="product-shop col-md-8 col-sm-7">
@@ -84,7 +85,7 @@ const ItemHistory =(props) => {
                     </div>
                 </div>
             </div> 
-        </div>
+
       )
 }
 

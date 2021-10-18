@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useHistory, withRouter } from 'react-router'
-import { ImageDetail1 } from '../../assets'
+import { ImageDefault,profile } from '../../assets'
 import { Footer, Header, Spinner } from '../../component'
 import { Rupiah } from '../../helper/Rupiah'
 import API from '../../services'
@@ -9,7 +9,7 @@ import { Source } from '../../services/Config'
 const ItemRegisterDonwline = (props) => {
       return (
         <div className="col-md-12">
-        <div className="mb-3">
+            <div className="mb-3">
                         <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
                         <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" onChange={props.onChangeEmail} />
                   </div>
@@ -46,30 +46,62 @@ const ItemRegisterDonwline = (props) => {
 
 const ItemPackage = (props) => {
       return (
-            <div className='col-6 col-md-4 p-3' onClick={() => {props.select(); props.harga()}}>
-                  <div className='box-paket p-3'style={{backgroundColor : props.color}} >
-                        <span className='font-weight-bold'>{props.name}</span>
-                        <div className='text-center'>
-                        <img src={(props.img == null ? ImageDetail1 : process.env.REACT_APP_BASE_URL + String(props.img).replace('public/', ''))} />
+
+            <div className="item col-lg-2d4 col-md-3 col-sm-4 col-xs-6 col-phone-12 "  style={{backgroundColor : props.color, paddingTop:15,paddingBottom:15}}>
+                  <div className="item-inner">
+                        <div className="prd">
+                        <div className="item-img clearfix">
+                              <a  onClick={() => {props.select(); props.harga()}}>
+                                    <div
+                                    className="product-image have-additional"
+                                   > 
+                                    <span className="img-main">
+                                    <img src={(props.img == null ? ImageDefault : process.env.REACT_APP_BASE_URL + String(props.img).replace('public/', ''))} />
+                                    </span>
+                                    </div>
+                              </a>
                         </div>
-                        <p>{props.price}</p>
+                        <div className="item-info">
+                              <div className="info-inner">
+                                    <div className="item-title">
+                                    <a title="Modular Modern" href='/Detail'>
+                                    {props.name}
+                                    </a>
+                                    </div>
+                                    <div className="item-price">
+                                    <div className="price-box">
+                                          <span className="regular-price">
+                                                <span className="price">
+                                                <span className="price1">{props.price}</span>
+                                                </span>
+                                          </span>
+                                    </div>
+                                    </div>
+                              </div>
+                        </div>
+                        </div>
                   </div>
+                  <br></br>
             </div>
+
+  
       )
 }
 
 const ItemAgen = (props) => {
       return (
-            <div className='col-6 col-md-4' onClick={props.select}>
-                  <div className='box-item-agent p-3' style={{backgroundColor : props.color}} >
-                  <div className='text-center'>
-                        <img src={ImageDetail1} alt='foto-agent'/>
-                  </div>
-                        <p>{props.name}</p>
-                        <p>{props.email}</p>
-                        <p>{props.phone}</p>
-                  </div>
+      
+
+<div className='col-6 col-md-4'  onClick={props.select}>                                              
+      <div style={{backgroundColor : props.color, paddingTop:15, paddingBottom:15, borderRadius:10}}>
+            <div className='text-center'>
+                  <img src={profile} style={{width:110, height:100}} alt='foto-agent'/>
             </div>
+            <p>{props.name}</p>
+            <p>{props.email}</p>
+            <p>{props.phone}</p>
+      </div>
+</div>
       )
 }
 
@@ -258,14 +290,23 @@ function RegisterDownline() {
                                                                                     price = {Rupiah(parseInt(item.price))}
                                                                                     select = {() => onChangeForm('package_id',item.id)}
                                                                                     harga = {() => setPrice(parseInt(item.price))}
-                                                                                    color = {form.package_id === item.id ? ' #ffffeb' : ''}
+                                                                                    color = {form.package_id === item.id ? ' #ffc400' : ''}
                                                                               />
                                                                   )
                                                             })}
                                                       </div>
                                                       <div className='row container m-0 p-3 justify-content-center'>
-                                                            <button type='submit' onClick={() => {setPageRegister(true); setPagePackage(false)}} className='btn-login mt-2 mx-1' style={{backgroundColor:'#f5a52d'}}>Kembali</button>
-                                                            <button type='submit' onClick={() => hanldePageAgen()} className='btn-login mt-2 mx-1' >Pilih Paket</button>
+                                                            <div className="login">
+                                                                  <div className="mb-3">
+                                                                  <button  onClick={() => {setPageRegister(true); setPagePackage(false)}} className="button1" type="button">Kembali</button>
+                                                                  </div>     
+                                                            </div>
+                                                            <div className="login">
+                                                                  <div className="mb-3">
+                                                                  <button   onClick={() => hanldePageAgen()} className="button1" type="button">Pilih Paket</button>
+                                                                  </div>     
+                                                            </div>
+                                                           
                                                       </div>
                                                 </div>
                                           }
@@ -286,8 +327,16 @@ function RegisterDownline() {
                                                             })}
                                                       </div>
                                                       <div className='row container m-0 p-3 justify-content-center'>
-                                                            <button type='submit'  onClick={() => {setPagePackage(true); setPageAgen(false)}} className='btn-login mt-2 mx-1' style={{backgroundColor:'#f5a52d'}}>Kembali</button>
-                                                            <button type='submit' className='btn-login mt-2 mx-1' onClick={form.agents_id ? () => {if(window.confirm('Register Donwline ?')){handleRegisterDownline()};} : () => alert('pilih agen terlebih dahulu')} >Register</button>
+                                                            <div className="login">
+                                                                  <div className="mb-3">
+                                                                  <button  onClick={() => {setPagePackage(true); setPageAgen(false)}} className="button1" type="button">Kembali</button>
+                                                                  </div>     
+                                                            </div>
+                                                            <div className="login">
+                                                                  <div className="mb-3">
+                                                                  <button   onClick={form.agents_id ? () => {if(window.confirm('Register Donwline ?')){handleRegisterDownline()};} : () => alert('pilih agen terlebih dahulu')} className="button1" type="button">Register</button>
+                                                                  </div>     
+                                                            </div>
                                                       </div>
                                                 </div>
                                           }

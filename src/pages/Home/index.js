@@ -157,7 +157,7 @@ function Home(){
                                                         <div className="info-inner">
                                                             <div className="item-title">
                                                                 <a title="Modular Modern" href='/Detail'>
-                                                                {item.name}
+                                                                {item.name.length > 25 ? item.name.substr(0,22)+ "...":item.name}
                                                                 </a>
                                                             </div>
                                                             <div className="item-price">
@@ -192,12 +192,12 @@ function Home(){
                                         {/* produk minyak belog */}
                                     </div>
                                 </div>
-                                <h1 style={{textAlign:'center', marginBottom:30}}>
+                                {/* <h1 style={{textAlign:'center', marginBottom:30}}>
                                     <strong>Paket Produk Minyak Belog</strong>
-                                </h1>
-                                <div role="tabpanel" className="tab-pane active" id="home">
+                                </h1> */}
+                                {/* <div role="tabpanel" className="tab-pane active" id="home">
                                     <div className="products-grid row style_grid">
-                                        {/* produk minyak belog */}
+                                      
                                         <div className="item col-lg-2d4 col-md-3 col-sm-4 col-xs-6 col-phone-12">
                                             <div className="item-inner">
                                                 <div className="prd">
@@ -423,9 +423,9 @@ function Home(){
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* produk minyak belog */}
+                                   
                                     </div>
-                                </div>
+                                </div> */}
                                 <div role="tabpanel" className="tab-pane" id="profile">
                                     <div className="products-grid row style_grid">
                                         <div className="item col-lg-2d4 col-md-3 col-sm-4 col-xs-6 col-phone-12">
