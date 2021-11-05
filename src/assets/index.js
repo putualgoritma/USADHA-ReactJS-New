@@ -37,6 +37,14 @@ import profile from './images/profile.png'
 import Copy from './images/Copy.png'
 import Share from './images/Share.png'
 import ImageDefault from './images/ImageDefault.jpg'
+import Testi1 from './images/testi/testi1.jpg'
+import Testi2 from './images/testi/testi2.jpg'
+import Testi3 from './images/testi/testi3.jpg'
+import Testi4 from './images/testi/testi4.jpg'
+import Testi5 from './images/testi/testi5.jpg'
+import Testi6 from './images/testi/testi6.jpg'
+import TestiMami from './images/testi/testimonimami.jpg'
+
 
 export {
     Logo,
@@ -77,5 +85,12 @@ export {
     profile,
     Copy,
     Share,
-    ImageDefault
+    ImageDefault,
+    Testi1,
+    Testi2,
+    Testi3,
+    Testi4,
+    Testi5,
+    Testi6,
+    TestiMami
 }

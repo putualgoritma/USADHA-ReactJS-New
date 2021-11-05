@@ -21,7 +21,8 @@ import {
     Agen,
     Checkout,
     Register,
-    GoogleMaps
+    GoogleMaps,
+    Test,
 } from '../../pages';
 import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 
@@ -29,6 +30,9 @@ const MainApp = () =>{
     return(
         <Router>
             <Switch>
+                <Route path='/Test'>
+                        <Test/>
+                </Route>
                 <Route path='/GoogleMaps'>
                         <GoogleMaps/>
                 </Route>

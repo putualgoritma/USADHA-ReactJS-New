@@ -304,6 +304,11 @@ const Header = (props)=>{
                                                         <span className="title">Contact</span>
                                                     </a>
                                                 </li>
+                                                <li className="level0 custom-item">
+                                                    <a className="menu-title-lv0" href='/Test'>
+                                                        <span className="title">Gabung Komunitas</span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </div>
                                         <div id="sns_mommenu" className="menu-offcanvas hidden-md hidden-lg">

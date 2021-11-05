@@ -7,6 +7,7 @@ import { Rupiah } from '../../helper/Rupiah';
 import API from '../../services';
 import { Source } from '../../services/Config';
 import { SelectPicker, Button } from 'rsuite';
+import Searchable from 'react-searchable-dropdown';
 
 function Transfer  () {
 
@@ -41,6 +42,7 @@ function Transfer  () {
                       if(userData!== null && tokenData !==null){
                             Promise.all([API.members(tokenData), API.point(userData.id, tokenData)]) 
                             .then((result) => { 
+                                console.log('token',tokenData);
                                   let memberData = [];
                                   result[0].data.map((item, index) => {
                                         memberData[memberData.length] ={
@@ -127,8 +129,19 @@ function Transfer  () {
                     <div className="row">
                         <div className ="col-md-2"></div>
                         <div className ="col-md-8">
-                            <div className="mb-3">
-                                <SelectPicker data={members}  block onChange={(value) => setForm({...form, to : value})} className='mb-3 select-picker' style={{zIndex:2}} />
+                            <div className="mb-3 " >
+                            {/* <SelectPicker data={members}  block onChange={(value) => setForm({...form, to : value})} className='mb-3 select-picker' style={{zIndex:2}} /> */}
+                         
+                                <Searchable
+                                    
+                                    hideSelected
+                                    options={members}
+                                    listMaxHeight={200}
+                                    font-family='arial'
+                                    placeholder="Search" 
+                                    onSelect={(value) => setForm({...form, to : value})}
+                                />
+                          
                             </div>
                         </div>
                         <div className ="col-md-2"></div>
@@ -167,6 +180,7 @@ function Transfer  () {
                 <div className="login">
                     <div className="mb-3">
                         <button onClick={() => {if(window.confirm('Transfer sekarang ?')){handleTransfer()};}}   className="button1" type="button">Transfer</button>
+                        <button onClick={() =>console.log(form) }   className="button1" type="button">Testtt</button>
                     </div>     
                 </div>
             </div>

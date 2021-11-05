@@ -103,12 +103,12 @@ function Home(){
                                             </div>
                                             <div className="banner6 pdno col-md-12 col-sm-12">
                                                 <div className="banner7 banner6  banner5 col-md-6 col-sm-12">
-                                                    <a href="#">
+                                                    <a href="/Detail/53">
                                                         <img src={ImageHome2} alt="alt"/>
                                                     </a>
                                                 </div>
                                                 <div className="banner8 banner6  banner5 col-md-6 col-sm-12">
-                                                    <a href="#">
+                                                    <a href="/Detail/52">
                                                         <img src={ImageHome3} alt="alt"/>
                                                     </a>
                                                 </div>
@@ -1732,10 +1732,10 @@ function Home(){
                     <div id="sns_main" className="col-md-12 col-main col-sm-12">
                         <div id="sns_mainmidle">
                             <div className="sns_banner">
-                                <a href="testimoni.html">
+                                <a href="https://wp.belogherbal.com/">
                                     <img src={Banner1} alt="alt"/></a>
                                 <p></p>
-                                <a href="#">
+                                <a href="https://belogherbal.com/Testimoni">
                                     <img src={Banner2} alt="alt"/></a>
                             </div>
                         </div>
