@@ -7,6 +7,9 @@ import { Rupiah } from '../../helper/Rupiah';
 import API from '../../services';
 import { Source } from '../../services/Config';
 import { SelectPicker, Button } from 'rsuite';
+import Searchable from 'react-searchable-dropdown';
+import ReactPaginate from 'react-paginate';
+import { profile } from '../../assets';
 
 function Transfer  () {
 
@@ -16,6 +19,19 @@ function Transfer  () {
     const [point, setPoint] = useState(0);
     const [TOKEN, setTOKEN] = useState(null)
     const [members, setMembers] = useState(null)
+    const [data, setData] = useState([]);
+    const [pageCount, setPageCount] = useState(0)
+    const [offset, setOffset] = useState(0)
+    const [perPage, setpPerPage] =  useState(9)
+    const [currentPage, setCurrentPage] = useState(1)
+    var [postData, setPostData] = useState([])
+    const [select, setSelect] = useState(null)
+    const [slice, setSlice] = useState(null)
+    const [selectedPage,setSelectedPage] = useState(0)
+    const [filter, setFilter] = useState({
+        filter : null
+       
+    })
 
     const dateRegister = () => {
           let todayTime = new Date();
@@ -30,6 +46,10 @@ function Transfer  () {
           from : null,
           to : null
     })
+    const [member, setMember] = useState({
+        per_page :9,
+        page:1
+    })
 
     useEffect( () => {
           let isAmounted = false
@@ -39,20 +59,15 @@ function Transfer  () {
                       let tokenData = res[1]
 
                       if(userData!== null && tokenData !==null){
-                            Promise.all([API.members(tokenData), API.point(userData.id, tokenData)]) 
+                            Promise.all([API.memberlist(member,tokenData), API.point(userData.id, tokenData)]) 
                             .then((result) => { 
-                                  let memberData = [];
-                                  result[0].data.map((item, index) => {
-                                        memberData[memberData.length] ={
-                                              label : `${item.name} (${item.code})`,
-                                              value : item.id,
-                                        }
-                                  })
-                                  setMembers(memberData)
-                                  setForm({...form, from : userData.id})
-                                  setPoint(parseInt(result[1].data[0].balance_points))
-                                  setLoading(false)
-                                  console.log('sekusis');
+                                console.log(result)
+                                    setData(result[0].data.data);
+                                    setPageCount(Math.ceil(result[0].data.total/perPage),postData)
+                                    setForm({...form, from : userData.id})
+                                    setPoint(parseInt(result[1].data[0].balance_points))
+                                    setLoading(false)
+                                    console.log('sekusis');
                             }).catch((e) => {
                                   console.log(e);
                                   setLoading(false)
@@ -68,6 +83,45 @@ function Transfer  () {
                 isAmounted = true;
           }
     }, [])
+
+    const handlePageClick =(e)=>{
+        setSelectedPage(e.selected);
+        const offset = selectedPage * perPage;
+        setCurrentPage(selectedPage);
+         let form_out= {
+            per_page :9,
+            page:e.selected+1,
+            filter :filter.filter
+        }
+        setOffset(offset);
+        Promise.all([API.memberlist(form_out,TOKEN)])
+        .then((result) => { 
+            console.log(result)
+            setData(result[0].data.data);
+            setPageCount(Math.ceil(result[0].data.total / perPage),postData)
+        }).catch((e) => {
+              console.log(e);
+              setLoading(false)
+         })
+    }
+    
+    const handleFilter =(e)=>{
+         let form_out= {
+            per_page :9,
+            page:1,
+            filter :filter.filter
+        }
+        setOffset(offset);
+        Promise.all([API.memberlist(form_out,TOKEN)])
+        .then((result) => { 
+            console.log(result)
+            setData(result[0].data.data);
+            setPageCount(Math.ceil(result[0].data.total / perPage),postData)
+        }).catch((e) => {
+              console.log(e);
+              setLoading(false)
+         })
+    }
 
     const getUSER =  () => {
           let data =  sessionStorage.getItem('USER')
@@ -124,14 +178,70 @@ function Transfer  () {
                     </h3>
                 </div>
                 <div className="col-md-12">
+                    <div className="row mb-2">
+                        <div className ="col-md-8 col-md-offset-2" >
+                            <div className="col-lg-10 col-md-6 col-xs-10 ">
+                                    <input
+                                    className="form-control"
+                                    placeholder="Masukan Nama"
+                                    onChange={e => setFilter({ filter: e.target.value })}/>
+                            </div>
+                            <div className="col-md-1 col-xs-1">
+                                <button
+                                    className="button2"
+                                    type='submit'
+                                    onClick={() => {handleFilter()}
+                                    }>
+                                    Filter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className ="col-md-2"></div>
                         <div className ="col-md-8">
-                            <div className="mb-3">
-                                <SelectPicker data={members}  block onChange={(value) => setForm({...form, to : value})} className='mb-3 select-picker' style={{zIndex:2}} />
+                            <div className="mb-3 " >
+                            {/* <SelectPicker data={members}  block onChange={(value) => setForm({...form, to : value})} className='mb-3 select-picker' style={{zIndex:2}} /> */}
+                                {/* <Searchable
+                                    
+                                    hideSelected
+                                    options={members}
+                                    listMaxHeight={200}
+                                    font-family='arial'
+                                    placeholder="Search" 
+                                    onSelect={(value) => setForm({...form, to : value})}
+                                /> */}
+                            {data.map((pd ,index)=>(
+                                <div className='col-lg-4 col-md-6 col-xs-6' key={pd.id} onClick={() => setSelect(pd.id) & setForm({...form, to : pd.id})} >
+                                    <div style={{backgroundColor : (select == pd.id ?  '#F3C242' : ''), paddingTop:15, paddingBottom:15, borderRadius:10}}>
+                                        <div className='text-center'>
+                                            <img src={profile} style={{width:110, height:100}} />
+                                        </div>
+                                        <p>{pd.id}</p>
+                                        <p>{pd.name .length > 20 ? pd.name.substr(0,20)+ "...":pd.name}</p>
+                                        <p>{pd.phone}</p>
+                                        <p>{pd.address.length > 15 ? pd.address.substr(0,15)+ "...":pd.address}</p>
+                                    </div>
+                                </div>
+                            ))}
                             </div>
                         </div>
+                      
                         <div className ="col-md-2"></div>
+                    </div>
+                    <div className="col-md-8 col-md-offset-2">
+                        <ReactPaginate
+                            previousLabel={"prev"}
+                            nextLabel={"next"}
+                            breakLabel={"..."}
+                            breakClassName={"break-me"}
+                            pageCount={pageCount}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={5}
+                            onPageChange={handlePageClick}
+                            containerClassName={"pagination" }
+                            subContainerClassName={"pages pagination"}
+                            activeClassName={"active"}/>
                     </div>
                 </div>
                 <div className="col-md-12">
@@ -167,6 +277,7 @@ function Transfer  () {
                 <div className="login">
                     <div className="mb-3">
                         <button onClick={() => {if(window.confirm('Transfer sekarang ?')){handleTransfer()};}}   className="button1" type="button">Transfer</button>
+                        {/* <button onClick={() =>console.log(form) }   className="button1" type="button">Testtt</button> */}
                     </div>     
                 </div>
             </div>

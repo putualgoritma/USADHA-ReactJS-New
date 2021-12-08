@@ -89,7 +89,7 @@ function Home(){
                                         <div className="slideshows col-md-6 col-sm-8">
                                             <div id="slider123456">
                                                 <div className="item style1 banner5">
-                                                    <a href="#">
+                                                    <a href="/about">
                                                         <img src={ImageHome4} alt="alt"/>
                                                     </a>
                                                 </div>
@@ -97,18 +97,18 @@ function Home(){
                                         </div>
                                         <div className="banner-right col-md-6 col-sm-4">
                                             <div className="banner6 banner5 dbn col-md-12 col-sm-6">
-                                                <a href="#">
+                                                <a href="/AgenList">
                                                     <img src={ImageHome1} alt="alt"/>
                                                 </a>
                                             </div>
                                             <div className="banner6 pdno col-md-12 col-sm-12">
                                                 <div className="banner7 banner6  banner5 col-md-6 col-sm-12">
-                                                    <a href="#">
+                                                    <a href="/Detail/53">
                                                         <img src={ImageHome2} alt="alt"/>
                                                     </a>
                                                 </div>
                                                 <div className="banner8 banner6  banner5 col-md-6 col-sm-12">
-                                                    <a href="#">
+                                                    <a href="/Detail/52">
                                                         <img src={ImageHome3} alt="alt"/>
                                                     </a>
                                                 </div>
@@ -136,7 +136,11 @@ function Home(){
                                     <div className="products-grid row style_grid">
 
                                     {/* Start Perulangan Produk */}
-                                    {products && products.map((item, index)=> {
+                                    {products == null &&
+                                        <Spinner/>
+                                    }
+                                    {products != null &&
+                                    products && products.map((item, index)=> {
                                         return (
                                         <div className="item col-lg-2d4 col-md-3 col-sm-4 col-xs-6 col-phone-12">
                                             <div className="item-inner">
@@ -173,10 +177,10 @@ function Home(){
                                                     </div>
                                                     <div className="action-bot">
                                                         <div className="wrap-addtocart">
-                                                            <button className="btn-cart" title="Add to Cart">
+                                                            <a  href={'/Detail/' + item.id} className="btn-cart" title="Add to Cart">
                                                                 <i className="fa fa-shopping-cart"/>
                                                                 <span>Add to Cart</span>
-                                                            </button>
+                                                            </a>
                                                         </div>
                                                         <div className="actions">
                                                             <ul className="add-to-links"></ul>
@@ -1732,10 +1736,10 @@ function Home(){
                     <div id="sns_main" className="col-md-12 col-main col-sm-12">
                         <div id="sns_mainmidle">
                             <div className="sns_banner">
-                                <a href="testimoni.html">
+                                <a href="https://wp.belogherbal.com/">
                                     <img src={Banner1} alt="alt"/></a>
                                 <p></p>
-                                <a href="#">
+                                <a href="https://belogherbal.com/Testimoni">
                                     <img src={Banner2} alt="alt"/></a>
                             </div>
                         </div>

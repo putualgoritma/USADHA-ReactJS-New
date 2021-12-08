@@ -78,8 +78,9 @@ function Detail(props){
                             cartData.push(data)
                             message = 'produk di tambahkan';
                             sessionStorage.setItem('CART', JSON.stringify(cartData))
-                            // history.push(`/landing/${message}/home`)
-                            history.goBack(`/landing/${message}/home`);
+                            // history.push(`/landing/${message}/Cart`)
+                            history.push(`/Cart`)
+                            // history.goBack(`/landing/${message}/home`);
                       }else{
                             alert('produk sudah ada di keranjang')
                       }
@@ -164,7 +165,7 @@ function Detail(props){
                                                                 <h5>{product.description}</h5>
                                                             </div>
                                                             <div className="actions">
-                                                                <label className="gfont" htmlFor="qty">Qty :
+                                                                {/* <label className="gfont" htmlFor="qty">Qty :
                                                                 </label>
                                                                 <div className="qty-container">
                                                                     <button
@@ -182,7 +183,7 @@ function Detail(props){
                                                                         className="qty-increase"
                                                                         onclick="var qty_el = document.getElementById('qty'); var qty = qty_el.value; if( !isNaN( qty )) qty_el.value++;return false;"
                                                                         type="button"/>
-                                                                </div>
+                                                                </div> */}
                                                                 <button className="btn-cart" title="Add to Cart" data-id="qv_item_8" onClick={() => handleCart()}>
                                                                     Add to Cart
                                                                 </button>
@@ -210,7 +211,7 @@ function Detail(props){
                                                 <li role="presentation" className="active style-detail">
                                                     <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Deskripsi Produk</a>
                                                 </li>
-                                                <li role="presentation" className="style-detail">
+                                                {/* <li role="presentation" className="style-detail">
                                                     <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Testimoni</a>
                                                 </li>
                                                 <li role="presentation" className="style-detail">
@@ -218,7 +219,7 @@ function Detail(props){
                                                 </li>
                                                 <li role="presentation" className="style-detail">
                                                     <a href="#video" aria-controls="video" role="tab" data-toggle="tab">Video</a>
-                                                </li>
+                                                </li> */}
                                             </ul>
                                             {/* Tab panes */}
                                             <div className="tab-content">

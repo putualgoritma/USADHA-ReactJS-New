@@ -64,7 +64,6 @@ const Login = ()=>{
             }
       }
 
-      // spinner
       if(loading ){
             return (
                   <Spinner/>
@@ -78,7 +77,7 @@ const Login = ()=>{
       <div className="sns_mainmenu">                             
             <div className="sns_menu_right">
                   <div className="block_topsearch">
-                        <div className="top-cart">
+                        {/* <div className="top-cart">
                         <div className="mycart mini-cart">
                               <div className="block-minicart">
                                     <div className="tongle">
@@ -95,7 +94,7 @@ const Login = ()=>{
                                     <div className="block-content content">
                                     <div className="block-inner">
                                           <ol id="cart-sidebar" className="mini-products-list">
-                                                {/* Start Perulangan */}
+                                            
                                                 <li className="item odd">
                                                 <a className="product-image" title="Modular Modern" href="detail.html">
                                                       <img alt="alt" src={Product8}/>
@@ -113,7 +112,7 @@ const Login = ()=>{
                                                       <span className="price">$ 540.00</span>
                                                 </div>
                                                 </li>
-                                                {/* End Perulangan */}
+                                               
                                           </ol>
                                           <p className="cart-subtotal">
                                                 <span className="label">Total:</span>
@@ -131,7 +130,7 @@ const Login = ()=>{
                                     </div>
                               </div>
                         </div>
-                        </div>
+                        </div> */}
                   </div>
             </div>
             </div>

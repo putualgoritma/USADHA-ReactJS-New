@@ -9170,7 +9170,7 @@ prompts@2.4.0, prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-"prop-types@15.x.x - 16.x.x", prop-types@^15.6.2, prop-types@^15.7.2:
+"prop-types@15.x.x - 16.x.x", prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9376,6 +9376,16 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
+react-dom@^16.8.3, react-dom@^16.8.6:
+  version "16.14.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.14.0.tgz#7ad838ec29a777fb3c75c3a190f661cf92ab8b89"
+  integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.19.1"
+
 react-dom@^17.0.2:
   version "17.0.2"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
@@ -9447,10 +9457,26 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-next-paging@^7.0.7:
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/react-next-paging/-/react-next-paging-7.0.7.tgz#7fcdea7bf68afcb0f3541cc5f27be43c51ab3142"
+  integrity sha512-nsZijgOkVpegjrdJIZziViKzmR0lGKOLyaLhaJHKZLmIJLVG2aFQf+dN7u/Nofz2uHEEDnF0godgbeaFv4hBeA==
+  dependencies:
+    prop-types "^15.7.2"
+    react "^16.8.3"
+    react-dom "^16.8.3"
+
 react-only-when@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/react-only-when/-/react-only-when-1.0.2.tgz"
   integrity sha512-agE6l3L6bqaVuwNtjihTQ36M+VBfPS63KOzcNL4ZTmlwSxQPvhzIqmBWfiol0/wLYmKxCcBqgXkEJpvj5Kob8Q==
+
+react-paginate@^7.1.5:
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/react-paginate/-/react-paginate-7.1.5.tgz#fac437f67fbeb5bfa688a175142839d94240a58b"
+  integrity sha512-CpyWSwsIIsFhWAQvmXDWuEl+yzfzisgvsUoZTj2IR1mFvm9oPTmeNBFc1wg8/i6ASmETeOmOnc78/U/MXyjd0w==
+  dependencies:
+    prop-types "^15.6.1"
 
 react-redux@^7.2.5:
   version "7.2.5"
@@ -9569,6 +9595,14 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-searchable-dropdown@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-searchable-dropdown/-/react-searchable-dropdown-2.0.3.tgz#7c00b72ce0ce70a8b4066f5d82ade0dd13099362"
+  integrity sha512-Bm9gE5oCFpztRXNGxZM8+Gb7RSypDDjgf5hvgd7/jspwX0rzzTYwx7GMW2xc5wYmFPXtTisIUh72CKizx+7W9Q==
+  dependencies:
+    react "^16.8.6"
+    react-dom "^16.8.6"
+
 react-select-search@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/react-select-search/-/react-select-search-3.0.8.tgz#c3b13ef02902dc3d8bf30da55dff39a9fec56c5f"
@@ -9615,7 +9649,7 @@ react-virtualized@^9.21.0:
     prop-types "^15.7.2"
     react-lifecycles-compat "^3.0.4"
 
-"react@15.x.x - 16.x.x":
+"react@15.x.x - 16.x.x", react@^16.8.3, react@^16.8.6:
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
   integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
@@ -10195,6 +10229,14 @@ saxes@^5.0.0:
   integrity sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==
   dependencies:
     xmlchars "^2.2.0"
+
+scheduler@^0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
+  integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
 
 scheduler@^0.20.2:
   version "0.20.2"

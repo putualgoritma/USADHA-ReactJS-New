@@ -26,6 +26,8 @@ const withdraw = (data, token) => Post(process.env.REACT_APP_API_WITHDRAW, false
 const updateProfile = (data, token) => Post(process.env.REACT_APP_API_UPDATE_PROFILE, false, data,token);
 const activasi = (data, token) => Post(process.env.REACT_APP_API_ACTIVE, false, data, token);
 const registerdownline = (data , token) => Post(process.env.REACT_APP_API_REGISTER_DOWNLINE, false,data,token);
+const memberlist = (data, token) => Post(process.env.REACT_APP_API_MEMBER_NEW, false,data,token);
+
 // PUT
 
 const API = {
@@ -50,7 +52,8 @@ const API = {
       historyordercancel,
       historyorderupdate,
       registerdownline, 
-      downline
+      downline,
+      memberlist
 }
 
 export default API;

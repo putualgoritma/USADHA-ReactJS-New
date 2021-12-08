@@ -67,12 +67,12 @@ const ItemCart = (props) => {
           <>
             <div className="col-md-6 m-0">
                 <div className="row" style={{ marginLeft:'3%'}}>
-                    <input
+                    {/* <input
                         style={{width:20, height:20,display:'inline'}
                         }
                         type='checkbox'
                         checked = {props.selectedAll ? true : (selected ? true : false)} 
-                        onChange={(value) => handleSelected(value.target.checked)} />
+                        onChange={(value) => handleSelected(value.target.checked)} /> */}
                     <img
                         src={(props.img == null ? ImageDefault : process.env.REACT_APP_BASE_URL + String(props.img).replace('public/', ''))}
                         style={{ width:240,height:180, marginLeft:'2%'}
@@ -209,7 +209,7 @@ function Cart() {
                                             <div className="col-md-12">
                                                 <div id="sns_titlepage"/>
                                                 <div id="sns_pathway" className="clearfix">
-                                                    <div className="pathway-inner" style={{display:'flex'}}>
+                                                    {/* <div className="pathway-inner" style={{display:'flex'}}>
                                                         <span className="icon-pointer "/>
                                                         <ul className="breadcrumbs" style={{flex:2}}>
                                                             <input
@@ -226,7 +226,7 @@ function Cart() {
                                                         <ul className="breadcrumbs" style={{flex:1}}>
                                                             <span style={{fontSize:17, paddingLeft:10} } onClick ={() => deleteSelected()}>Hapus</span>
                                                         </ul>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             </div>
                                             <hr></hr>

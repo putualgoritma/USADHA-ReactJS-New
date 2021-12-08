@@ -37,6 +37,21 @@ import profile from './images/profile.png'
 import Copy from './images/Copy.png'
 import Share from './images/Share.png'
 import ImageDefault from './images/ImageDefault.jpg'
+import Testi1 from './images/testi/testi1.jpg'
+import Testi2 from './images/testi/testi2.jpg'
+import Testi3 from './images/testi/testi3.jpg'
+import Testi4 from './images/testi/testi4.jpg'
+import Testi5 from './images/testi/testi5.jpg'
+import Testi6 from './images/testi/testi6.jpg'
+import TestiMami from './images/testi/testimonimami.jpg'
+import ManagementLogo from './images/management-logo.jpg'
+import Management1 from './images/management/mng1.png'
+import Management2 from './images/management/mng2.png'
+import Management3 from './images/management/mng3.png'
+import Management4 from './images/management/mng4.png'
+import Management5 from './images/management/mng5.png'
+import Management6 from './images/management/mng6.png'
+import BannerAgen from './images/banner-agen.jpg'
 
 export {
     Logo,
@@ -77,5 +92,21 @@ export {
     profile,
     Copy,
     Share,
-    ImageDefault
+    ImageDefault,
+    Testi1,
+    Testi2,
+    Testi3,
+    Testi4,
+    Testi5,
+    Testi6,
+    TestiMami,
+    ManagementLogo,
+    Management1,
+    Management2,
+    Management3,
+    Management4,
+    Management5,
+    Management6,
+    BannerAgen
+    
 }
