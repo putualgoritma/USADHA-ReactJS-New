@@ -89,7 +89,7 @@ function Home(){
                                         <div className="slideshows col-md-6 col-sm-8">
                                             <div id="slider123456">
                                                 <div className="item style1 banner5">
-                                                    <a href="#">
+                                                    <a href="/about">
                                                         <img src={ImageHome4} alt="alt"/>
                                                     </a>
                                                 </div>
@@ -97,7 +97,7 @@ function Home(){
                                         </div>
                                         <div className="banner-right col-md-6 col-sm-4">
                                             <div className="banner6 banner5 dbn col-md-12 col-sm-6">
-                                                <a href="#">
+                                                <a href="/AgenList">
                                                     <img src={ImageHome1} alt="alt"/>
                                                 </a>
                                             </div>
@@ -136,7 +136,11 @@ function Home(){
                                     <div className="products-grid row style_grid">
 
                                     {/* Start Perulangan Produk */}
-                                    {products && products.map((item, index)=> {
+                                    {products == null &&
+                                        <Spinner/>
+                                    }
+                                    {products != null &&
+                                    products && products.map((item, index)=> {
                                         return (
                                         <div className="item col-lg-2d4 col-md-3 col-sm-4 col-xs-6 col-phone-12">
                                             <div className="item-inner">
@@ -173,10 +177,10 @@ function Home(){
                                                     </div>
                                                     <div className="action-bot">
                                                         <div className="wrap-addtocart">
-                                                            <button className="btn-cart" title="Add to Cart">
+                                                            <a  href={'/Detail/' + item.id} className="btn-cart" title="Add to Cart">
                                                                 <i className="fa fa-shopping-cart"/>
                                                                 <span>Add to Cart</span>
-                                                            </button>
+                                                            </a>
                                                         </div>
                                                         <div className="actions">
                                                             <ul className="add-to-links"></ul>

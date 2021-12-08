@@ -23,6 +23,7 @@ import {
     Register,
     GoogleMaps,
     Test,
+    AgenList,
 } from '../../pages';
 import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 
@@ -30,6 +31,9 @@ const MainApp = () =>{
     return(
         <Router>
             <Switch>
+                <Route path='/AgenList'>
+                        <AgenList/>
+                </Route>
                 <Route path='/Test'>
                         <Test/>
                 </Route>

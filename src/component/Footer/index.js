@@ -21,7 +21,7 @@ const Footer=()=>{
                                 <li>
                                     <i className="fa-li fa fw fa-phone"></i>
                                     <p>+62 812-1013-5757</p>
-                                    <p>+62 812-1013-5757</p>
+                                    <p>+62 822-9874-5757</p>
                                 </li>
                                 <li>
                                     <i className="fa-li fa fw fa-envelope"></i>
@@ -39,16 +39,14 @@ const Footer=()=>{
                         <h6>Tentang</h6>
                         <ul>
                             <li>
-                                <a href="#">Filosofi</a>
+                                <a href="tentang.html">Visi, Motto, Tagline, Core Value kami</a>
                             </li>
                             <li>
-                                <a href="#">Sejarah</a>
+                                <a href="tentang.html#brand">Our Brand</a>
                             </li>
+
                             <li>
-                                <a href="#">Jajaran Komisaris</a>
-                            </li>
-                            <li>
-                                <a href="#">FAQ's</a>
+                                <a href="tentang.html#jajaran">Jajaran Komisaris</a>
                             </li>
                         </ul>
                     </div>
@@ -56,7 +54,7 @@ const Footer=()=>{
                         <h6>Our Social Media</h6>
                         <ul>
                             <li>
-                                <a href="https://www.facebook.com/minyakbelogherbal"><img
+                                <a href="https://www.facebook.com/MinyakBelogBali"><img
                                     src={IconFacebook}
                                     width="20px"
                                     height="20px"
@@ -88,20 +86,13 @@ const Footer=()=>{
                         <h6>Blog</h6>
                         <ul>
                             <li>
-                                <a href="#">Artikel Terbaru</a>
+                                <a href="https://wp.belogherbal.com/category/healthwithbelog/">Tips sehat ala Belog Herbal</a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Artikel Terpopuler
-                                </a>
+                                <a href="https://wp.belogherbal.com/category/berita/">Berita</a>
                             </li>
                             <li>
-                                <a href="#">Tips Trik</a>
                             </li>
-                            <li>
-                                <a href="#">Berita</a>
-                            </li>
-                            <li></li>
                         </ul>
                     </div>
                     <div className="col-phone-12 col-xs-6 col-sm-3 col-md-2 column column4">
@@ -123,13 +114,9 @@ const Footer=()=>{
         <div className="container">
             <div className="row">
                 <div className="bottom-pd1 col-sm-6">
-                    <div className="sns-copyright">
-                        © Minyak Belog. All Rights Reserved. Develop by
-                        <a
-                            title="title"
-                            data-original-title="Visit Sherocompany.Com!"
-                            data-toggle="tooltip"
-                            href="https://www.sherocompany.com/">Sherocompany</a>
+                    <div class="sns-copyright">
+                        Develop by 
+                        <a title="" data-original-title="Visit Digininetive" data-toggle="tooltip" href="https://www.sherocompany.com/">Digininetive</a>
                     </div>
                 </div>
             </div>

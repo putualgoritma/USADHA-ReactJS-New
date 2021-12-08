@@ -94,9 +94,6 @@ const handlePageClick =(e)=>{
 }
 
 const handleFilter =(e)=>{
-    // setSelectedPage(e.selected);
-    // const offset = selectedPage * perPage;
-    // setCurrentPage(selectedPage);
      let form_out= {
         per_page :9,
         page:1,

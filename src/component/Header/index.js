@@ -8,23 +8,18 @@ import {Footer} from '../index';
 import Sidebar from 'react-sidebar';
 
 const ItemSideBar = (props) => {
+    
     return (
      <div className="sidebar active" style={{zIndex:2, overflowX: 'auto'}}>
-        {/* <i className="bx bxs-grid-alt" id="btn" /> */}
+       {props.close}
         <ul className="nav_list ">
-          <li>
-            <a href='./Login'>
-              <i className="bx bxs-user bx-md" /> 
-              <span className="links_name">Login</span>
-            </a>
-          </li>
+        {props.login}
+        {props.myAccount}
           <hr className="new5" />
           <li>
             <a>
               <i className="bx bx-money bx-md" />
-              <span className="links_name">Saldo Point : </span>
-              <p></p>
-              <span style={{color:'red'}}>{Rupiah(props.point)}</span>
+              <span className="links_name">Saldo Point :   <span style={{color:'red'}}>{Rupiah(props.point)} </span></span>
               </a>
           </li>
           <li>
@@ -75,13 +70,48 @@ const ItemSideBar = (props) => {
               <span className="links_name">History Order</span>
             </a>
           </li>
-          <li>
-            
-            <a onClick={props.logout}>
-              <i className="bx bxs-log-out" />
-              <span className="links_name" >Logout</span>
-            </a>
+          {props.logout}
+        </ul>
+      </div>
+    )
+}
 
+const ItemSideBarRes = (props) => {
+    
+    return (
+     <div className="sidebar active sidebarRes " style={{zIndex:3, overflowX: 'auto', backgroundColor: '#222', color:'white'}}>
+        {props.close}
+        <ul className="nav_list ">
+      
+          <li>
+            <a href="/">
+              <span className="links_name" style={{padding:8}}>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/About">
+              <span className="links_name" style={{padding:8}}>Tentang</span>
+            </a>
+          </li>
+          <li>
+            <a href="/Product">
+              <span className="links_name" style={{padding:8}}>Produk</span>
+            </a>
+          </li>
+          <li>
+            <a href="/Testimoni">
+              <span className="links_name" style={{padding:8}}>Testimoni</span>
+            </a>
+          </li>
+          <li>
+            <a href="/Contact">
+              <span className="links_name" style={{padding:8}}>Contact</span>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <span className="links_name"style={{padding:8}} >Gabung Komunitas</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -100,6 +130,7 @@ const Header = (props)=>{
     const width  = window.innerWidth;
     const [point, setPoint] = useState(0)
      const [sideBar, setSideBar] = useState(false)
+     const [sideBarRes, setSideBarRes] = useState(false)
     useEffect(() => {
           let isAmounted = false
           if(!isAmounted) { 
@@ -157,12 +188,12 @@ const Header = (props)=>{
     }
 
     const logout = () => {
-          setLoading(true)
+        //   setLoading(true)
           Promise.all([sessionStorage.removeItem('USER'),  sessionStorage.removeItem('TOKEN')]).then((result) => {
                 setTimeout(function () {
                       setLoading(false)
-                      history.push('/login')
-                    //   history.goBack('/login')
+                    //   history.push('/login')
+                      history.goBack('/login')
                   }, 2000); 
           }).catch((e) => {
                 setLoading(false)
@@ -206,22 +237,29 @@ const Header = (props)=>{
                                         <div className="myaccount">
                                             <div className="tongle">
                                                 <i className="fa fa-user"></i>
-                                                <span>My account</span>
-                                                <i className="fa fa-angle-down"/>
+                                                {USER &&
+                                                    <span onClick={() =>setSideBar(true) & setSideBarRes(false)} style={{cursor:'pointer'}}>My Account</span>
+                                                }
+                                                 {!USER &&
+                                                 <span onClick={() => setSideBar(true)  & setSideBarRes(false)} style={{cursor:'pointer'}}>Login</span>
+                                                }
                                             </div>
+                                            {width >= 450 &&
                                             <div className="customer-ct content">
                                                 <ul className="links">
+                                                    {USER &&
                                                     <li className="first">
-                                                        <a className="top-link-myaccount" title="My Account"onClick={() => myAccount()}>My Account</a>
+                                                         <a className="top-link-myaccount" title="My Account" onClick={() =>setSideBar(true) & setSideBarRes(false)} style={{cursor:'pointer'}}>My Account</a>
                                                     </li>
-                                                    <li>
-                                                        <a className="top-link-checkout" title="Checkout" href="#">Checkout</a>
-                                                    </li>
+                                                    }
+                                                    {!USER &&
                                                     <li className=" last">
-                                                        <a className="top-link-login" title="Log In" onClick={() => setSideBar(true)}>Login</a>
+                                                        <a className="top-link-login" title="Log In" onClick={() => setSideBar(true)  & setSideBarRes(false)} style={{cursor:'pointer'}}>Login</a>
                                                     </li>
+                                                    }
                                                 </ul>
                                             </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -305,29 +343,31 @@ const Header = (props)=>{
                                                     </a>
                                                 </li>
                                                 <li className="level0 custom-item">
-                                                    <a className="menu-title-lv0" href='/Test'>
+                                                    <a className="menu-title-lv0" href='/'>
                                                         <span className="title">Gabung Komunitas</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div id="sns_mommenu" className="menu-offcanvas hidden-md hidden-lg">
-                                            <span
+                                            {/* <span
                                                 className="btn2 btn-navbar leftsidebar"
                                                 style={{display: 'inline-block'}
                                                 }>
                                                 <i className="fa fa-align-left"/>
                                                 <span className="overlay"/>
-                                            </span>
+                                            </span> */}
                                             <span className="btn2 btn-navbar offcanvas">
+                                            <a onClick={() => setSideBarRes(true)  & setSideBar(false)} style={{cursor:'pointer'}}>
                                                 <i className="fa fa-align-justify"/>
-                                                <span className="overlay"/>
+                                            </a>
+                                            
                                             </span>
-                                            <span className="btn2 btn-navbar rightsidebar">
+                                            {/* <span className="btn2 btn-navbar rightsidebar">
                                                 <i className="fa fa-align-right"/>
                                                 <span className="overlay"/>
-                                            </span>
-                                            <div id="menu_offcanvas" className="offcanvas">
+                                            </span> */}
+                                            {/* <div id="menu_offcanvas" className="offcanvas">
                                                 <ul className="mainnav">
                                                     <li className="level0 nav-5 first active">
                                                         <div className="accr_header">
@@ -375,7 +415,7 @@ const Header = (props)=>{
                                                         </div>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="sns_menu_right">
@@ -384,21 +424,23 @@ const Header = (props)=>{
                                                 <div className="mycart mini-cart">
                                                     <div className="block-minicart">
                                                         <div className="tongle">
+                                                        <a href='./Cart'>
                                                             <i className="fa fa-shopping-cart"/>
                                                             <div className="summary">
                                                                 <span className="amount">
-                                                                    <a href='/Cart'>
+                        
                                                                         <span>{lengthCart}</span>
                                                                         ( items )
-                                                                    </a>
+                                                                    
                                                                 </span>
                                                             </div>
+                                                            </a>
                                                         </div>
-                                                        <div className="block-content content">
+                                                        {/* <div className="block-content content">
                                                             <div className="block-inner">
-                                                                <ol id="cart-sidebar" className="mini-products-list">
+                                                                <ol id="cart-sidebar" className="mini-products-list"> */}
                                                                     {/* Start Perulangan */}
-                                                                    <li className="item odd">
+                                                                    {/* <li className="item odd">
                                                                         <a className="product-image" title="Modular Modern" href="detail.html">
                                                                             <img alt="alt" src={Product8}/>
                                                                         </a>
@@ -414,9 +456,9 @@ const Header = (props)=>{
                                                                             </p>
                                                                             <span className="price">$ 540.00</span>
                                                                         </div>
-                                                                    </li>
+                                                                    </li> */}
                                                                     {/* End Perulangan */}
-                                                                </ol>
+                                                                {/* </ol>
                                                                 <p className="cart-subtotal">
                                                                     <span className="label">Total:</span>
                                                                     <span className="price">$ 540.00</span>
@@ -430,7 +472,7 @@ const Header = (props)=>{
                                                                     <a className="button gfont go-to-cart" href="./Cart">Go to cart</a>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> */}
                                                     </div>
                                                 </div>
                                             </div>
@@ -445,16 +487,88 @@ const Header = (props)=>{
             </div>
                 <Sidebar
                          sidebar={<ItemSideBar
-                                         
-                                          logout = {() => logout()}
-                                          point = {point && point}
+                                        close = {<div onClick={() =>setSideBar(false)}  style={{cursor:'pointer', left:'35%', position:'relative'}} className="text-center">
+                                                    <i className="fa fa-times" style={{color:'white',}}>
+                                                        <div className="center" style={{fontSize:14}}>Close</div>
+                                                    </i>
+                                                </div>
+                                                }
+                                        login ={!USER &&
+                                                    <li>
+                                                        <a href='./Login'>
+                                                        <i className="bx bxs-user bx-md" /> 
+                                                        <span className="links_name">Login</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                        myAccount={USER &&
+                                                    <li>
+                                                        <a onClick={()=>myAccount()}>
+                                                        <i className="bx bxs-user bx-md" /> 
+                                                        <span className="links_name">My Account</span>
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                        logout ={USER &&
+                                                    <li>
+                                                        <a onClick={() => logout()}>
+                                                        <i className="bx bxs-log-out" />
+                                                        <span className="links_name" >Logout</span>
+                                                        </a>
+                                                    </li>
+                                                 }
+                                        point = {point && point}
                                       
                                     />}
                          open={sideBar}
                         //  docked={sideBar}
                          onSetOpen={setSideBar}
 
-                        styles={{sidebar: { background: "none" ,width: (width <= 415 ? '70%' : '19%') , position: "fixed"}, root : {height:'100%',  }}}
+                        styles={{sidebar: { background: "none",boxShadow: `7,7` ,width: (width <= 415 ? '100%' : '19%') , position: "fixed"}, root : {height:'100%',  }}}
+                  >
+                  </Sidebar>
+
+                  <Sidebar
+                         sidebar={<ItemSideBarRes
+                                        close = {<div onClick={() =>setSideBarRes(false)}  style={{cursor:'pointer', left:'35%', position:'relative'}} className="text-center">
+                                                    <i className="fa fa-times" style={{color:'white',}}>
+                                                        <div className="center" style={{fontSize:14}}>Close</div>
+                                                    </i>
+                                                </div>
+                                                }
+                                        login ={!USER &&
+                                                    <li>
+                                                        <a href='./Login'>
+                                                        <i className="bx bxs-user bx-md" /> 
+                                                        <span className="links_name">Login</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                        myAccount={USER &&
+                                                    <li>
+                                                        <a onClick={()=>myAccount()}>
+                                                        <i className="bx bxs-user bx-md" /> 
+                                                        <span className="links_name">My Account</span>
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                        logout ={USER &&
+                                                    <li>
+                                                        <a onClick={() => logout()}>
+                                                        <i className="bx bxs-log-out" />
+                                                        <span className="links_name" >Logout</span>
+                                                        </a>
+                                                    </li>
+                                                 }
+                                        point = {point && point}
+                                      
+                                    />}
+                         open={sideBarRes}
+                        //  docked={sideBar}
+                         onSetOpen={setSideBarRes}
+                        styles={{sidebar: { background: "none",width: (width <= 415 ? '100%' : '19%') , position: "fixed"}, root : {height:'100%',  }}}
                   >
                   </Sidebar>
 

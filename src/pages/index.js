@@ -20,6 +20,7 @@ import Checkout from './Checkout'
 import Register from './Register'
 import GoogleMaps from './Maps'
 import Test from './Test'
+import AgenList from './AgenList'
 
 export{
     Home,
@@ -43,5 +44,6 @@ export{
     Checkout,
     Register,
     GoogleMaps,
-    Test
+    Test,
+    AgenList
 }

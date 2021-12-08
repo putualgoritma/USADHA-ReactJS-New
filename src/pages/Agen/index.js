@@ -8,10 +8,10 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 
 function Agen(props) {
     const [myMarkers,setMymarkers]= useState([
-        {latitude:-8.525673350010061, longitude: 115.1045738118341},
-        {latitude: -8.79890314230233, longitude: 115.1616967253286},
-        {latitude: -8.116383295015035, longitude: 115.08770040997422},
-        {latitude: -8.342992618609465, longitude: 114.61459871693032},
+        // {latitude:-8.525673350010061, longitude: 115.1045738118341},
+        // {latitude: -8.79890314230233, longitude: 115.1616967253286},
+        // {latitude: -8.116383295015035, longitude: 115.08770040997422},
+        // {latitude: -8.342992618609465, longitude: 114.61459871693032},
     ])
     const displayMarkers = () =>{
         return myMarkers.map((mark,index)=>{
@@ -37,8 +37,8 @@ function Agen(props) {
 
         if(!isAmounted) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                alert('latitude : '+position.coords.latitude);
-                alert('longtitude : '+position.coords.longitude);
+                // alert('latitude : '+position.coords.latitude);
+                // alert('longtitude : '+position.coords.longitude);
               });
                 Promise.all([API.agents()])
                 .then(result => {

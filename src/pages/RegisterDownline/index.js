@@ -295,19 +295,38 @@ function RegisterDownline() {
                                                                   )
                                                             })}
                                                       </div>
-                                                      <div className='row container m-0 p-3 justify-content-center'>
-                                                            <div className="login">
-                                                                  <div className="mb-3">
-                                                                  <button  onClick={() => {setPageRegister(true); setPagePackage(false)}} className="button1" type="button">Kembali</button>
-                                                                  </div>     
+                                                      <div class=" row container m-0 p-3 justify-content-center">
+                                                            <div class="row justify-content-md-center">
+                                                                  <div class="col col-lg-2 col-lg-offset-4">
+                                                                        <div className="login">
+                                                                              <div className="mb-3">
+                                                                              <button  onClick={() => {setPageRegister(true); setPagePackage(false)}} className="button1" type="button">Kembali</button>
+                                                                              </div>     
+                                                                        </div>
+                                                                  </div>
+                                                                  <div class="col col-lg-2">
+                                                                        <div className="login">
+                                                                              <div className="mb-3">
+                                                                              <button   onClick={() => hanldePageAgen()} className="button1" type="button">Pilih Paket</button>
+                                                                              </div>     
+                                                                        </div>
+                                                                  </div>
                                                             </div>
-                                                            <div className="login">
-                                                                  <div className="mb-3">
-                                                                  <button   onClick={() => hanldePageAgen()} className="button1" type="button">Pilih Paket</button>
-                                                                  </div>     
-                                                            </div>
-                                                           
                                                       </div>
+                                                      {/* <div className='row container m-0 p-3 justify-content-center'>
+                                                          
+                                                                  <div className="login">
+                                                                        <div className="mb-3">
+                                                                        <button  onClick={() => {setPageRegister(true); setPagePackage(false)}} className="button1" type="button">Kembali</button>
+                                                                        </div>     
+                                                                  </div>
+                                                                  <div className="login">
+                                                                        <div className="mb-3">
+                                                                        <button   onClick={() => hanldePageAgen()} className="button1" type="button">Pilih Paket</button>
+                                                                        </div>     
+                                                                  </div>
+                                                          
+                                                      </div> */}
                                                 </div>
                                           }
                                           {pageAgen && 
@@ -326,18 +345,40 @@ function RegisterDownline() {
                                                                   )
                                                             })}
                                                       </div>
-                                                      <div className='row container m-0 p-3 justify-content-center'>
-                                                            <div className="login">
-                                                                  <div className="mb-3">
-                                                                  <button  onClick={() => {setPagePackage(true); setPageAgen(false)}} className="button1" type="button">Kembali</button>
-                                                                  </div>     
-                                                            </div>
-                                                            <div className="login">
-                                                                  <div className="mb-3">
-                                                                  <button   onClick={form.agents_id ? () => {if(window.confirm('Register Donwline ?')){handleRegisterDownline()};} : () => alert('pilih agen terlebih dahulu')} className="button1" type="button">Register</button>
-                                                                  </div>     
+
+                                                      <div class=" row container m-0 p-3 justify-content-center">
+                                                            <div class="row justify-content-md-center">
+                                                                  <div class="col col-lg-2 col-lg-offset-4">
+                                                                        <div className="login">
+                                                                              <div className="mb-3">
+                                                                              <button  onClick={() => {setPagePackage(true); setPageAgen(false)}} className="button1" type="button">Kembali</button>
+                                                                              </div>     
+                                                                        </div>
+                                                                  </div>
+                                                                  <div class="col col-lg-2">
+                                                                        <div className="login">
+                                                                              <div className="mb-3">
+                                                                              <button   onClick={form.agents_id ? () => {if(window.confirm('Register Donwline ?')){handleRegisterDownline()};} : () => alert('pilih agen terlebih dahulu')} className="button1" type="button">Register</button>
+                                                                              </div>     
+                                                                        </div>
+                                                                  </div>
                                                             </div>
                                                       </div>
+
+                                                      {/* <div className='row container m-0 p-3 justify-content-center'>
+                                                          
+                                                                  <div className="login">
+                                                                        <div className="mb-3">
+                                                                        <button  onClick={() => {setPagePackage(true); setPageAgen(false)}} className="button1" type="button">Kembali</button>
+                                                                        </div>     
+                                                                  </div>
+                                                                  <div className="login">
+                                                                        <div className="mb-3">
+                                                                        <button   onClick={form.agents_id ? () => {if(window.confirm('Register Donwline ?')){handleRegisterDownline()};} : () => alert('pilih agen terlebih dahulu')} className="button1" type="button">Register</button>
+                                                                        </div>     
+                                                                  </div>
+                                                          
+                                                      </div> */}
                                                 </div>
                                           }
                               </div>
