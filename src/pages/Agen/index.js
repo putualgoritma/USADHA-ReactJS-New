@@ -29,9 +29,8 @@ function Agen(props) {
     const [agen, setAgen] = useState(null)
     const history = useHistory()
     const [select, setSelect] = useState(null)
+    const width  = window.innerWidth;
 
-
-    
     useEffect(() => {
         let isAmounted = false
 
@@ -76,7 +75,7 @@ function Agen(props) {
                         </strong>
                     </h3>
                 </div>
-                <div className='container'>
+                {/* <div className='container'>
                     <div className='col-md-10 col-md-offset-1 m-0 p-0' style={{height:450}}>
                     <Map
                         google={props.google}
@@ -88,7 +87,7 @@ function Agen(props) {
                     </Map>
                     </div>
                 </div>
-                <hr/>
+                <hr/> */}
                 <div className='container'>
                     <div className='row'>
                         {agen.map((item) => {
@@ -106,11 +105,20 @@ function Agen(props) {
                                 )
                         })}
                     </div>
+                    {width < 450 &&
+                    <div className="login"  style={{width:'89%', position:'fixed', textAlign:'center', bottom:0, zIndex:10}}>
+                        <div className="mb-3">
+                            <button onClick={select ? () => history.push("/checkout/" + select) : () => alert('pilih agen terlebih dahulu')} className="button1" type="button">Pilih Agen</button>
+                        </div>     
+                    </div> 
+                    }
+                     {width >= 450 &&
                     <div className="login">
                         <div className="mb-3">
                             <button onClick={select ? () => history.push("/checkout/" + select) : () => alert('pilih agen terlebih dahulu')} className="button1" type="button">Pilih Agen</button>
                         </div>     
-                    </div>    
+                    </div>  
+                    }  
                 </div>
             </div>  
             <Footer/>
