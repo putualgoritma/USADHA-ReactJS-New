@@ -16,6 +16,7 @@ const historyorder = (id, token) => Get(process.env.REACT_APP_API_HISTORY_ORDER 
 const historyordercancel = (id, token) => Get(process.env.REACT_APP_API_ORDER_CANCEL + id, false, token);
 const historyorderupdate = (id, token) => Get(process.env.REACT_APP_API_DELIVERY_MEMBER_UPDATE + id , false, token);
 const downline = (id, token) => Get(process.env.REACT_APP_API_DOWNLINE + id, false, token);
+const pointbalance = (id,token)=>Get(process.env.REACT_APP_API_POINT_BALANCE + id, false, token);
 //POST
 const register = (data) => Post(process.env.REACT_APP_API_REGISTER, false, data);
 const login = (data) => Post(process.env.REACT_APP_API_LOGIN, false, data);
@@ -53,7 +54,8 @@ const API = {
       historyorderupdate,
       registerdownline, 
       downline,
-      memberlist
+      memberlist,
+      pointbalance
 }
 
 export default API;

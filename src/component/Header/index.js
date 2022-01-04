@@ -70,6 +70,12 @@ const ItemSideBar = (props) => {
               <span className="links_name">History Order</span>
             </a>
           </li>
+          <li>
+            <a href="/Konversi">
+              <i className="bx bx-fast-forward" />
+              <span className="links_name">Konversi</span>
+            </a>
+          </li>
           {props.logout}
         </ul>
       </div>

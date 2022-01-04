@@ -24,6 +24,7 @@ import {
     GoogleMaps,
     Test,
     AgenList,
+    Konversi
 } from '../../pages';
 import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 
@@ -31,6 +32,9 @@ const MainApp = () =>{
     return(
         <Router>
             <Switch>
+                <Route path='/Konversi'>
+                        <Konversi/>
+                </Route>
                 <Route path='/AgenList'>
                         <AgenList/>
                 </Route>

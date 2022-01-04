@@ -4,6 +4,8 @@ import { Footer, Header, Spinner } from '../../component'
 import { Copy, ImageDetail1, Share } from '../../assets'
 import API from '../../services';
 import { Source } from '../../services/Config';
+import axios from 'axios';
+import { Rupiah } from '../../helper/Rupiah';
 
 function Profile() {
 
@@ -12,6 +14,12 @@ function Profile() {
       const history = useHistory();
       const [loading, setLoading] = useState(true);
       const [confirmPassword, setConfirmPassword] = useState(null)
+      const [user,setUser] = useState([])
+      const [datatoken, setDataToken]=useState(null);
+      const [point, setPoint] = useState(0)
+      const [pointUpgrade, setPointUpgrade] = useState(0)
+      const [pointSaving, setPointSaving] = useState(0)
+      const [pointFee, setPointFee] = useState(0)
       // const [profile, setProfile] = useState(null)
       const [form, setForm] = useState({
             id :null,
@@ -23,13 +31,35 @@ function Profile() {
       })
       
 
+      const getPoint = () => {
+            axios.get('https://admin.belogherbal.com/api/close/balance/187' + `${user.id}`, {
+              headers: {
+                Authorization: `Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYmNjODQ3ZDNkOWQ1ZDBkYzBhYWNiOWU2OTg5OGM2NDdjMWUxZDRlZTIzOTQxODQ4ZjNjNTJiODA5YjczN2ZmNzA1NTU4YzliMDk2YTZlMTQiLCJpYXQiOjE2NDEyODAwODcsIm5iZiI6MTY0MTI4MDA4NywiZXhwIjoxNjcyODE2MDg3LCJzdWIiOiIxODciLCJzY29wZXMiOltdfQ.dfvQj9datI3K4-euvMMPVSZqBo_Q1upG8TYy6vot78IA2yb715e4k1VvhkdshPJw_Yf2PzllJrfAvutXyX6OPBBr9BrvgNZL_pZxADay8LsTrrCsyNydpM77fJv9Tyj31ObpLinW9h10Ql8CRD34KJSBScf8uPiwdalVYrQ5-UYnq_6d7ROBXqUt1tY0W_aPAR2PxyL_kN-kR3G-cEzzqTBWrrUTiEARywxpCuGcLa1yG7xEEH8gVG55ePSSz9anV2z_3l2hYqKbpxlC4fdggNZrWgB98VZdj_JJhu1llV_LcEtDEtuVGg-zz8HrPIoJz-aBje5WHNfg7L6R7Qm1So8tADL_60wJMzN4OTlC5pz-IVjhA08GPzixLIA_sJwOoMjOwAQuwzCoqca-BqsoFm9v8IQglP6G9Osq9Rk5WAbSYzjUVe7yTg0P8LUMr-DbjtMfqbSMTtRAdEwVMjKAaaluFFLI63DbzsQdq4604OlRvLjh0vaWAOh5aZg4E9tuha4wiMn7KbBZt9z8gBCxTtgoh72Oozcjqdy1Onq9qsBT5mkclbzibuc-cizj-M35nDOxTh0EBtMrGAKHskh0DPxXi1A01KbReNRRUSG2h3RK3iMXRwRRyu6zgl-jGWABV-anfNnnek8r8I0kElnMMT8RlLNlxxFujylyXSgHQqQ'}`,
+                'Accept': 'application/json'
+              }
+            })
+              .then((result) => {
+               
+                setPoint(parseInt(result.data.data[0].balance_points))
+                setPointUpgrade(parseInt(result.data.data[0].balance_upgrade_points))
+                setPointSaving(parseInt(result.data.data[0].balance_saving_points))
+                setPointFee(parseInt(result.data.data[0].fee_points))
+              }).catch((e) => {
+                console.log(e);
+                console.log('error Api point')
+              })
+          }
+
       useEffect( () => {
             let isAmounted = false
             if(!isAmounted) { 
-                  Promise.all([getUSER(), getTOKEN()]).then((res) => {
+                  Promise.all([getUSER(), getTOKEN(),getPoint()]).then((res) => {
                         let userData = res[0];
-                        let tokenData = res[1]
-
+                        let tokenData = res[1];
+                        setUser(res[0]);
+                        setDataToken(res[1]);
+                        // console.log('data res',res);
+                        
                       if(userData && tokenData !==null){
                               setForm({
                                     ...form,
@@ -135,12 +165,17 @@ function Profile() {
                                                 <span style={{flex:1}}>
                                                       <img src={Copy} alt='gambar' style={{width:20, height:20}} />
                                                       <p>Copy</p>
+                                                      <p>Point Belanja :{Rupiah(point)}</p>
+                                                      <p>Point Upgrade :{Rupiah(pointUpgrade)}</p>
                                                 </span>
                                                 <span style={{flex:1}}>
                                                       <img src={Share} alt='gambar' style={{width:20, height:20}} />
                                                       <p>Share</p>
+                                                      <p>Point Tabungan :{Rupiah(pointSaving)}</p>
+                                                      <p>Point Komisi :{Rupiah(pointFee)}</p>
                                                 </span>
                                           </div>
+                                         
                                     </div>
                               </div>
                               <div className='col-12 col-md-1 m-0 p-0 garis-batas'>
@@ -196,7 +231,10 @@ function Profile() {
                                                 <div className="login col-sm-10 text-center">
                                                       <div className="mb-3">
                                                             <button  onClick={() => {if(window.confirm('Update Profile  ?')){handleProfile()};}}  className="button1" type="button">Update Biodata</button>
-                                                      </div>     
+                                                      </div>   
+                                                      {/* <div className="mb-3">
+                                                            <button  onClick={() => {console.log(user.id)}}  className="button1" type="button">Update Biodata</button>
+                                                      </div>      */}
                                                 </div>
                                           </div>
                                     </div>

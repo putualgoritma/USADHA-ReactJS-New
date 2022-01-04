@@ -21,6 +21,7 @@ import Register from './Register'
 import GoogleMaps from './Maps'
 import Test from './Test'
 import AgenList from './AgenList'
+import Konversi from './Konversi'
 
 export{
     Home,
@@ -45,5 +46,6 @@ export{
     Register,
     GoogleMaps,
     Test,
-    AgenList
+    AgenList,
+    Konversi
 }
