@@ -2,9 +2,13 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useHistory, withRouter } from 'react-router'
 import { ImageDefault,profile } from '../../assets'
 import { Footer, Header, Spinner } from '../../component'
-import { Rupiah } from '../../helper/Rupiah'
+import { Rupiah,} from '../../helper/Rupiah'
+import {Numformat} from '../../helper/Numformat'
 import API from '../../services'
 import { Source } from '../../services/Config'
+import axios from 'axios';
+import { Link } from 'react-router-dom'
+
 
 const ItemRegisterDonwline = (props) => {
       return (
@@ -105,7 +109,8 @@ const ItemAgen = (props) => {
       )
 }
 
-function RegisterDownline() {
+function RegisterDownline(props) {
+      // const RegisterDownline = props =>{
       const dateRegister = () => {
             var todayTime = new Date();
             var month = todayTime.getMonth() + 1;
@@ -120,12 +125,20 @@ function RegisterDownline() {
       const [point, setPoint] = useState(0)
       const [agen, setAgen] = useState(null)
       const [price, setPrice] = useState(0)
+      const [datatoken, setDataToken] = useState(null)
+      const [dataType, setDataType] = useState('Jaringan');
+      const [name, setName] = useState(null);
+      const [activationType, setActivationType] = useState(1);
       // const [selectPackage, setSelectPackage] = useState(null)
       const [loading, setLoading] = useState(true)
       const [confirm, setConfirm] = useState(null)
       const [pageRegister, setPageRegister] =  useState(true)
       const [pagePackage, setPagePackage] =  useState(false)
       const [pageAgen, setPageAgen] = useState(false)
+      const [activations, setActivations] = useState([]);
+      const [status, setStatus] = useState('user');
+      const [bvmin, setBvmin] = useState(0);
+      const [checkeddef, setCheckeddef] = useState(0);
       const [form, setForm] = useState({
             register : dateRegister(),
             password : null,
@@ -138,7 +151,7 @@ function RegisterDownline() {
             agents_id : null
       })
 
-
+    
 
       useEffect( () => {
             let isAmounted = false
@@ -146,7 +159,7 @@ function RegisterDownline() {
                   Promise.all([getUSER(), getTOKEN()]).then((res) => {
                         let userData = res[0];
                         let tokenData = res[1]
-
+                        setDataToken (res[1]);
                       if(userData && tokenData !==null){
                               setForm({...form, ref_id : userData.id})
                               Promise.all([API.point(userData.id, tokenData), API.agents(), API.paketMembers(tokenData)]) 
@@ -214,11 +227,76 @@ function RegisterDownline() {
             return data;
       }
 
+      const apiActivations = ()=>{
+            axios.get('https://admin.belogherbal.com/api/close/activation-type',{
+                  headers: {
+                        cancelToken :'',
+                        Authorization: (datatoken ==null ? null : `Bearer ${datatoken}`),
+                        'Accept' : 'application/json' 
+                  }
+            }).then((res) => {
+                  console.log('data res activation',res.data.data)   
+            setLoading(false)
+            }).catch((e) => {
+                  console.log(e);
+                  setLoading(false)
+            })   
+      }
       const handlePagePackage = () => {
             if(form.name !== null && form.address !==null && form.email !==null && form.password !==null && form.phone !==null){
                   if(form.password === confirm){
-                        setPageRegister(false)
-                        setPagePackage(true)
+                        let isAmounted = false
+                        if(!isAmounted) {
+                              setLoading(true);
+                              axios.get('https://admin.belogherbal.com/api/close/activation-type',{
+                                    headers: {
+                                          cancelToken :'',
+                                          Authorization: (datatoken ==null ? null : `Bearer ${datatoken}`),
+                                          'Accept' : 'application/json' 
+                                    }
+                              }).then((res) => {
+                                      setActivations(res.data.data)
+                                    let dataActivationsArr = []
+                                    let bvPrev = 0
+                                    let firstSelected = 0
+                                    if (dataType == 'Upgrade') {
+                                          console.log('Upgrade',dataType)
+                                          let dataActivations = res.data.data
+                                          dataActivations.map((item, index) => {
+                                                setName(item.name)
+                                            if (item.id == dataForm.activations.id) {
+                                              bvPrev = item.bv_min
+                                            }
+                                            if (item.id > dataForm.activations.id) {
+                                              dataActivationsArr[index] = { id: item.id, name: item.name, type: item.type, bv_min: item.bv_min - bvPrev, bv_max: item.bv_max - bvPrev }
+                                              if (firstSelected == 0 && checkeddef==0) {
+                                                setStatus(item.name)
+                                                setBvmin((item.bv_min - bvPrev)*1000)
+                                                setActivationType(item.id)
+                                                setCheckeddef(1)
+                                              }
+                                              firstSelected = firstSelected + 1
+                                            }
+                                          })
+                                        } else {
+                                          console.log('Not Upgrade',dataType)
+                                          setActivations(res.data.data)
+                                    }
+                                    console.log('data res activation1',res.data.data)
+                                    sessionStorage.setItem('FORMREGIS', JSON.stringify(form))   
+
+                              setLoading(false)
+                              }).catch((e) => {
+                                    console.log(e);
+                                    setLoading(false)
+                              })   
+                              setPageRegister(false)
+                              setPagePackage(true)
+                        } return () => {
+                              Source.cancel('cancel api')
+                              isAmounted = true;
+                        }
+                       
                   }else{
                         alert('password anda tidak sama')
                   }
@@ -226,6 +304,10 @@ function RegisterDownline() {
                   alert('mohon lengkapi data')
             }
       }
+      const checkBvmin = (a, b, c) => {
+            setBvmin(a)
+            setActivationType(b)
+          };
 
       const hanldePageAgen = () => {
             if(form.package_id !== null){
@@ -279,56 +361,57 @@ function RegisterDownline() {
                                           }
 
                                           {pagePackage && 
-                                                <div className='section-activasi m-0 mb-4'>
-                                                      <div className='row'>
-                                                            {paket && paket.map((item, index) => {
-                                                                  return (
-                                                                              <ItemPackage
-                                                                                    key ={index}
-                                                                                    name = {item.name}
-                                                                                    img = {item.img}
-                                                                                    price = {Rupiah(parseInt(item.price))}
-                                                                                    select = {() => onChangeForm('package_id',item.id)}
-                                                                                    harga = {() => setPrice(parseInt(item.price))}
-                                                                                    color = {form.package_id === item.id ? ' #ffc400' : ''}
-                                                                              />
-                                                                  )
-                                                            })}
+                                          <div className="container">
+                                                <div className="row">
+                                                      <div className="col-md-8 col-md-offset-2">
+                                                            <span style={{fontWeight:500, fontSize:15}}>Pilih Tipe</span>
+                                                           <p></p>
                                                       </div>
-                                                      <div class=" row container m-0 p-3 justify-content-center">
-                                                            <div class="row justify-content-md-center">
-                                                                  <div class="col col-lg-2 col-lg-offset-4">
-                                                                        <div className="login">
-                                                                              <div className="mb-3">
-                                                                              <button  onClick={() => {setPageRegister(true); setPagePackage(false)}} className="button1" type="button">Kembali</button>
-                                                                              </div>     
-                                                                        </div>
-                                                                  </div>
-                                                                  <div class="col col-lg-2">
-                                                                        <div className="login">
-                                                                              <div className="mb-3">
-                                                                              <button   onClick={() => hanldePageAgen()} className="button1" type="button">Pilih Paket</button>
-                                                                              </div>     
-                                                                        </div>
-                                                                  </div>
-                                                            </div>
-                                                      </div>
-                                                      {/* <div className='row container m-0 p-3 justify-content-center'>
-                                                          
-                                                                  <div className="login">
-                                                                        <div className="mb-3">
-                                                                        <button  onClick={() => {setPageRegister(true); setPagePackage(false)}} className="button1" type="button">Kembali</button>
-                                                                        </div>     
-                                                                  </div>
-                                                                  <div className="login">
-                                                                        <div className="mb-3">
-                                                                        <button   onClick={() => hanldePageAgen()} className="button1" type="button">Pilih Paket</button>
-                                                                        </div>     
-                                                                  </div>
-                                                          
-                                                      </div> */}
                                                 </div>
+                                             
+                                                <div className="row">
+                                                      <div className="col-md-8 col-md-offset-2">
+                                                      {activations.map((item) => {
+                                                            let nama_paket = item.name
+                                                            nama_paket = nama_paket.charAt(0).toUpperCase() + nama_paket.slice(1);
+                                                            let bv_min = item.bv_min * 1000
+                                                            return(
+                                                            <div> 
+                                                                  <input type="radio" value={item.name} 
+                                                                  style={{width:17, height:17}}
+                                                                  checked={status == item.name}
+                                                                  onClick={() => checkBvmin(bv_min, item.id, setStatus(item.name))}
+                                                                  /> 
+                                                                    <label className="form-check-label" htmlFor="flexCheckChecked" style={{fontWeight:500, fontSize:14, paddingLeft:20, paddingBottom:8}}>
+                                                                        Paket {nama_paket}({item.id != 4 ? item.bv_min +' - '+ item.bv_max : 'min '+Numformat(item.bv_min)} bv)
+                                                                   </label>
+                                                            </div>
+                                                            )
+                                                      })}
+                                                      </div>
+                                                </div>
+                                                <div className="row">
+                                                      <div className="col-md-8 col-md-offset-2">
+                                                            <span style={{fontWeight:500, fontSize:15}}>Keranjang Paket</span>
+                                                      </div>
+                                                </div>
+                                                <br></br>
+                                                  <div className="login">
+                                                      <div className='row'>
+                                                            <div className="mb-3">
+                                                                  <button className="button1" type="button" onClick={()=>console.log(form)}>Pilih Paket</button>
+                                                                  <Link to={{pathname: "/products",state:form }}>test
+                                                                  
+                                                                </Link>
+                                                                  {/* <Link to={"/Products"}>TEST PARAMS1</Link> */}
+                                                                  <span style={{margin:15}}></span>
+                                                                  <button onClick={() =>{console.log(activations)}} className="button1" type="button">Checkout</button>
+                                                            </div> 
+                                                      </div> 
+                                                </div>
+                                          </div>
                                           }
+                                          
                                           {pageAgen && 
                                                 <div className='section-activasi agen-downline mb-4 mt-3 '>
                                                       <div className='row'>

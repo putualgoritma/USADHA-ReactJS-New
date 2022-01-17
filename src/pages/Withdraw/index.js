@@ -5,6 +5,7 @@ import { Footer, Header, Spinner } from '../../component';
 import API from '../../services';
 import { Rupiah } from '../../helper/Rupiah';
 import { Source } from '../../services/Config';
+import axios from 'axios';
 
 function Withdraw  () {
 
@@ -12,7 +13,9 @@ function Withdraw  () {
     const [USER, setUSER] = useState(null)
     const [loading, setLoading] = useState(true);
     const [point, setPoint] = useState(0);
-    const [TOKEN, setTOKEN] = useState(null)
+    const [TOKEN, setTOKEN] = useState(null);
+    const [points, setPoints] = useState([]);
+    const [total, setTotal] = useState(0);
 
     const dateRegister = () => {
           let todayTime = new Date();
@@ -26,9 +29,31 @@ function Withdraw  () {
           customers_id : null,
           amount : 0,
           bank_name : null,
-          bank_acc_no : null
+          bank_acc_no : null,
+          points:points
     })
 
+    const checkAll = (a,b,c) => {
+        let total=0;
+        points.map((item, index) => {
+              let statestatus = item.status
+              if(a==item.id){
+                    statestatus =false
+              }
+              if(statestatus==true || (a==item.id && b.target.checked==true)){
+              total += parseInt(item.balance);
+              }
+            })
+        setTotal(parseInt(total))
+      };
+
+    const handleChecked = (index, value) => {
+        let temp_state = [...points];
+        let temp_element = { ...temp_state[index] };
+        temp_element.status = value.checked;
+        temp_state[index] = temp_element;
+    setPoints(temp_state);
+    };
 
 
     useEffect( () => {
@@ -42,14 +67,25 @@ function Withdraw  () {
                                   ...form,
                                   customers_id : userData.id
                             })
-                            Promise.all([ API.point(userData.id, tokenData)]) 
-                            .then((result) => { 
-                                  setPoint(parseInt(result[0].data[0].balance_points))
-                                  setLoading(false) 
-                            }).catch((e) => {
-                                  console.log(e);
-                                  setLoading(false)
-                            })
+                        axios.get('https://admin.belogherbal.com/api/close/points' + '?customer_id=' + `${userData.id}` + '&status_fld=withdraw', {
+                                headers : {
+                                  Authorization: `Bearer ${tokenData}`,
+                                  'Accept' : 'application/json' 
+                                }
+                          })
+                          .then((result) => {
+                                console.log('data point api', result)
+                                let arrayPoints = [];
+                                let totalPoint = 0
+                                result.data.map((item, index) => {
+                                      let objPoint = {id:item.id,status:true,balance:item.balance,name:item.name}
+                                      arrayPoints.push(objPoint)
+                                      totalPoint += parseInt(item.balance)
+                                    })
+                                setPoints(arrayPoints)
+                                setTotal(parseInt(totalPoint))
+                                setLoading(false)
+                          });
                       }else{
                             alert('mohon login terlebih dahulu')      
                             history.push('/login')
@@ -86,24 +122,36 @@ function Withdraw  () {
                 [name] : value
           })
     }
+    let dataWithDraw = {
+        register : dateRegister(),
+        customers_id : form.customers_id,
+        amount : form.amount,
+        bank_name : form.bank_name,
+        bank_acc_no : form.bank_name,
+        points : points,
+  }
 
     const handleWithdraw = () => {
           if(form.bank_acc_no !== null && form.amount !== 0 && form.customers_id !== '' && form.bank_name !== null && form.register !== ''){
-                if(point > form.amount){
+                if(total > form.amount){
                       setLoading(true)
-                      API.withdraw(form, TOKEN).then((result) => {
+                      API.withdraw(dataWithDraw, TOKEN).then((result) => {
                             console.log(result);
                             setForm({
                                   register : dateRegister(),
                                   customers_id : null,
                                   amount : 0,
                                   bank_name : null,
-                                  bank_acc_no : null
+                                  bank_acc_no : null,
+                                
                             });
                             // alert(result.message)
                             // window.location.reload();
                             // history.push(`landing/${result.message}/withdraw`)
+                            // alert(res.data.message);
                              history.goBack(`landing/${result.message}/withdraw`)
+                            // window.location.reload();
+                             console.log('success withdraw')
                       }).catch((e) => {
                             console.log(e.request)
                             alert('withdraw gagal')
@@ -112,7 +160,8 @@ function Withdraw  () {
                                   customers_id : null,
                                   amount : 0,
                                   bank_name : null,
-                                  bank_acc_no : null
+                                  bank_acc_no : null,
+                               
                             });
                             setLoading(false)
                       })
@@ -145,20 +194,29 @@ function Withdraw  () {
                 </div>
                 <div className="col-md-12">
                     <div className="row">
-                        <div className ="col-md-2"></div>
-                        <div className ="col-md-8">
-                            <span style={{fontWeight:500, fontSize:15}}>Sumber Dana</span>
-                            <div className='box-sumber-dana mb-3'>
-                                <div className='d-flex flex-row'>
-                                    <FaCreditCard className='icon-card mr-3'/>
-                                    <div>
-                                            <span className='font-weight-bold'>Minyak Belog Cash</span> <br/>
-                                            <span className='font-smaller'>Balance {Rupiah(point)}</span>
-                                    </div>
-                                </div> 
+                        <div className="col-md-8 col-md-offset-2">
+                            {points && points.map((item, index)=> {
+                            return (
+                            <div className="form-check">
+                                <input  className="form-check-input" 
+                                        type="checkbox" 
+                                        defaultValue id="flexCheckChecked" 
+                                        defaultChecked 
+                                        onChange={(status) => checkAll(item.id,status,handleChecked(index,status))}
+                                        style={{width:20, height:20}}
+                                />
+                                <label className="form-check-label" htmlFor="flexCheckChecked" style={{fontWeight:500, fontSize:14, paddingLeft:20, paddingBottom:10}}>
+                                    {item.name}{Rupiah(parseInt(item.balance))}
+                                </label>
                             </div>
+                                )
+                            })}
+                        </div> 
+                    </div>
+                    <div className="row">
+                        <div className="col-md-8 col-md-offset-2">
+                            <span style={{fontWeight:500, fontSize:13}}>Total Saldo Poin : {Rupiah(parseInt(total))}</span>
                         </div>
-                        <div className ="col-md-2"></div>
                     </div>
                 </div>
                 <div className="col-md-12">
@@ -238,6 +296,7 @@ function Withdraw  () {
                 <div className="login">
                     <div className="mb-3">
                         <button onClick={() => {if(window.confirm('Withdraw sekarang ?')){handleWithdraw()};}}  className="button1" type="button">Withdraw</button>
+                        {/* <button onClick={() => {console.log('data form',form)}}  className="button1" type="button">Withdraw</button> */}
                     </div>     
                 </div>
             </div>

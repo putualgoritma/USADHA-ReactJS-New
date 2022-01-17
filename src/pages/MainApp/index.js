@@ -24,7 +24,8 @@ import {
     GoogleMaps,
     Test,
     AgenList,
-    Konversi
+    Konversi,
+    Products
 } from '../../pages';
 import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 
@@ -32,23 +33,29 @@ const MainApp = () =>{
     return(
         <Router>
             <Switch>
+                {/* <Route path='/products/:id'>
+                    <Products/>
+                </Route> */}
+                <Route path="/products">
+                        <Products/>
+                </Route>
                 <Route path='/Konversi'>
-                        <Konversi/>
+                    <Konversi/>
                 </Route>
                 <Route path='/AgenList'>
-                        <AgenList/>
+                    <AgenList/>
                 </Route>
                 <Route path='/Test'>
-                        <Test/>
+                     <Test/>
                 </Route>
                 <Route path='/GoogleMaps'>
-                        <GoogleMaps/>
+                    <GoogleMaps/>
                 </Route>
                 <Route path='/Register'>
-                        <Register/>
+                    <Register/>
                 </Route>
                 <Route path='/checkout/:id'>
-                        <Checkout/>
+                    <Checkout/>
                 </Route>
                 <Route path="/Agen">
                     <Agen/>

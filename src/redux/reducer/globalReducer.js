@@ -25,6 +25,24 @@ import {combineReducers} from 'redux'
 //       return state;
 // } 
 
+// reducer
+const form = {
+    register : null,
+    password : null,
+    name : null,
+    phone : null,
+    email : null,
+    address : null,
+    ref_id : null,
+    package_id : null,
+    agents_id : null
+}
+
+const FORMDOWNLINE = (state = form, action)=>{
+  
+  return state
+}
+
 const initTOKEN = null;
 
 const TOKEN = (state = initTOKEN, action) => {
@@ -55,10 +73,11 @@ const USER = (state = initUSER, action) => {
   }
 }
 
-
+//store
 const rootReducer = combineReducers({
   TOKEN,
-  USER
+  USER,
+  FORMDOWNLINE
 })
 
 

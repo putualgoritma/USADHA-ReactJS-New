@@ -22,6 +22,7 @@ import GoogleMaps from './Maps'
 import Test from './Test'
 import AgenList from './AgenList'
 import Konversi from './Konversi'
+import Products from './Products'
 
 export{
     Home,
@@ -47,5 +48,6 @@ export{
     GoogleMaps,
     Test,
     AgenList,
-    Konversi
+    Konversi,
+    Products
 }
