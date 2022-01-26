@@ -24,6 +24,13 @@ import {
     GoogleMaps,
     Test,
     AgenList,
+    Konversi,
+    Products,
+    Package,
+    DetailPackage,
+    Testing,
+    Agens,
+    Sponsor
 } from '../../pages';
 import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 
@@ -31,20 +38,41 @@ const MainApp = () =>{
     return(
         <Router>
             <Switch>
+                {/* <Route path='/products/:id'>
+                    <Products/>
+                </Route> */}
+                <Route path="/Sponsor">
+                    <Sponsor/>
+                </Route>
+                <Route path="/Agens">
+                    <Agens/>
+                </Route>
+                <Route path="/Testing">
+                    <Testing/>
+                </Route>
+                <Route path="/package">
+                    <Package/>
+                </Route>
+                <Route path="/products">
+                    <Products/>
+                </Route>
+                <Route path='/Konversi'>
+                    <Konversi/>
+                </Route>
                 <Route path='/AgenList'>
-                        <AgenList/>
+                    <AgenList/>
                 </Route>
                 <Route path='/Test'>
-                        <Test/>
+                     <Test/>
                 </Route>
                 <Route path='/GoogleMaps'>
-                        <GoogleMaps/>
+                    <GoogleMaps/>
                 </Route>
                 <Route path='/Register'>
-                        <Register/>
+                    <Register/>
                 </Route>
                 <Route path='/checkout/:id'>
-                        <Checkout/>
+                    <Checkout/>
                 </Route>
                 <Route path="/Agen">
                     <Agen/>
@@ -87,6 +115,9 @@ const MainApp = () =>{
                 </Route>
                 <Route path="/Detail/:id">
                     <Detail/>    
+                </Route>
+                <Route path="/DetailPackage/:id">
+                    <DetailPackage/>    
                 </Route>
                 <Route path="/Contact">
                     <Contact/>    

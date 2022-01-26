@@ -21,6 +21,13 @@ import Register from './Register'
 import GoogleMaps from './Maps'
 import Test from './Test'
 import AgenList from './AgenList'
+import Konversi from './Konversi'
+import Products from './Products'
+import Package from './Package'
+import DetailPackage from './DetailPackage'
+import Testing from './Testing'
+import Agens from './Agens'
+import Sponsor from './Sponsor'
 
 export{
     Home,
@@ -45,5 +52,12 @@ export{
     Register,
     GoogleMaps,
     Test,
-    AgenList
+    AgenList,
+    Konversi,
+    Products,
+    Package,
+    DetailPackage,
+    Testing,
+    Agens,
+    Sponsor
 }
