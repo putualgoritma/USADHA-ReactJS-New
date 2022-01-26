@@ -25,7 +25,12 @@ import {
     Test,
     AgenList,
     Konversi,
-    Products
+    Products,
+    Package,
+    DetailPackage,
+    Testing,
+    Agens,
+    Sponsor
 } from '../../pages';
 import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 
@@ -36,8 +41,20 @@ const MainApp = () =>{
                 {/* <Route path='/products/:id'>
                     <Products/>
                 </Route> */}
+                <Route path="/Sponsor">
+                    <Sponsor/>
+                </Route>
+                <Route path="/Agens">
+                    <Agens/>
+                </Route>
+                <Route path="/Testing">
+                    <Testing/>
+                </Route>
+                <Route path="/package">
+                    <Package/>
+                </Route>
                 <Route path="/products">
-                        <Products/>
+                    <Products/>
                 </Route>
                 <Route path='/Konversi'>
                     <Konversi/>
@@ -98,6 +115,9 @@ const MainApp = () =>{
                 </Route>
                 <Route path="/Detail/:id">
                     <Detail/>    
+                </Route>
+                <Route path="/DetailPackage/:id">
+                    <DetailPackage/>    
                 </Route>
                 <Route path="/Contact">
                     <Contact/>    

@@ -17,6 +17,8 @@ const historyordercancel = (id, token) => Get(process.env.REACT_APP_API_ORDER_CA
 const historyorderupdate = (id, token) => Get(process.env.REACT_APP_API_DELIVERY_MEMBER_UPDATE + id , false, token);
 const downline = (id, token) => Get(process.env.REACT_APP_API_DOWNLINE + id, false, token);
 const pointbalance = (id,token)=>Get(process.env.REACT_APP_API_POINT_BALANCE + id, false, token);
+const membertree = (id,token)=>Get(process.env.REACT_APP_MEMBER_TREE + id, false, token);
+
 //POST
 const register = (data) => Post(process.env.REACT_APP_API_REGISTER, false, data);
 const login = (data) => Post(process.env.REACT_APP_API_LOGIN, false, data);
@@ -28,6 +30,7 @@ const updateProfile = (data, token) => Post(process.env.REACT_APP_API_UPDATE_PRO
 const activasi = (data, token) => Post(process.env.REACT_APP_API_ACTIVE, false, data, token);
 const registerdownline = (data , token) => Post(process.env.REACT_APP_API_REGISTER_DOWNLINE, false,data,token);
 const memberlist = (data, token) => Post(process.env.REACT_APP_API_MEMBER_NEW, false,data,token);
+const registerdownlinenew = (data , token) => Post(process.env.REACT_APP_API_REGISTER_DOWNLINE_NEW, false,data,token);
 
 // PUT
 
@@ -55,7 +58,9 @@ const API = {
       registerdownline, 
       downline,
       memberlist,
-      pointbalance
+      pointbalance,
+      membertree,
+      registerdownlinenew
 }
 
 export default API;

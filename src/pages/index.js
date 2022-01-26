@@ -23,6 +23,11 @@ import Test from './Test'
 import AgenList from './AgenList'
 import Konversi from './Konversi'
 import Products from './Products'
+import Package from './Package'
+import DetailPackage from './DetailPackage'
+import Testing from './Testing'
+import Agens from './Agens'
+import Sponsor from './Sponsor'
 
 export{
     Home,
@@ -49,5 +54,10 @@ export{
     Test,
     AgenList,
     Konversi,
-    Products
+    Products,
+    Package,
+    DetailPackage,
+    Testing,
+    Agens,
+    Sponsor
 }

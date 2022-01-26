@@ -17,6 +17,11 @@ const Products=(props)=>{
     const [select, setSelect] = useState(null)
     const [form, setForm] =useState(props.params)
     const params = useParams();
+
+    const dataForm = JSON.parse(sessionStorage.getItem('FORMREGIS'));
+    const dataType = JSON.parse(sessionStorage.getItem('DATATYPE'));
+    const activationType = JSON.parse(sessionStorage.getItem('ACTIVATIONTYPE'));
+
     const test = props.location
     // const {id}: { id:string }=useParams()
     const handleSelect = (selectedIndex) => {
@@ -46,6 +51,10 @@ const Products=(props)=>{
           }
     }, [])
 
+
+    const insertCart = (product)=>{
+
+    }
     
     if(loading){
         return (
@@ -60,7 +69,6 @@ const Products=(props)=>{
         }     
         {products != null && */}
         <div>
-            <span>hahah:{JSON.stringify(params)}</span>
                 <div id="sns_content" className="wrap layout-m">
                     <div className="container">
                         <div className="row">
@@ -112,7 +120,7 @@ const Products=(props)=>{
                                                             <div className="action-bot">
                                                                 <div className="wrap-addtocart" key={item.id} onClick={() => setSelect(item.id)}>
                                                                     
-                                                                    <a  href={'/Detail/' + item.id} className="btn-cart" title="Add to Cart">
+                                                                    <a  href={'/DetailPackage/' + item.id} className="btn-cart" title="Add to Cart">
                                                                         <i className="fa fa-shopping-cart"/>
                                                                         <span>Add to Cart</span>
                                                                     </a>
@@ -127,8 +135,8 @@ const Products=(props)=>{
                                                 )
                                                 }) }
                                                     <div className="mb-3">
-                                                        <button className="button1" type="button" onClick={()=>console.log(sessionStorage.getItem('FORMREGIS'))}>terima</button>
-                                                        <button className="button1" type="button" onClick={select ? () => history.push("/RegisterDownline/" + select) : () => alert('pilih Product dahulu')}>Tambah</button>
+                                                        {/* <button className="button1" type="button" onClick={()=>console.log(dataForm,dataType)}>terima</button> */}
+                                                        {/* <button className="button1" type="button" onClick={select ? () => history.push("/package/" + select) : () => alert('pilih Product dahulu')}>Tambah</button> */}
                                                     </div> 
                                             </div>
                                         </div>
