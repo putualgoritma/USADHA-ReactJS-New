@@ -41,7 +41,7 @@ function Agens(props) {
     const handleRegisterDownline = ()=>{
         setLoading(true)
         let dataJaringan = dataForm;
-        dataJaringan.cart = paket;
+        dataJaringan.cart = {item:paket};
         dataJaringan.sponsor_id =  dataForm.ref_id;
         dataJaringan.activationtype = activationType;
         console.log('data dari jaringan',dataJaringan);
