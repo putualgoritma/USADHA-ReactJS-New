@@ -108,6 +108,17 @@ function Profile() {
             })
       }
 
+      // const handlePackage = ()=>{
+      //       if(form.name !== null && form.address !==null && form.email !==null && form.phone !==null){
+      //             let dataType = 'Upgrade'
+      //             sessionStorage.setItem('DATATYPE', JSON.stringify(dataType))
+      //             sessionStorage.setItem('FORMUPGRADE', JSON.stringify(form))
+      //             history.push('/Package')
+               
+      //       }else{
+      //             alert('mohon lengkapi data')
+      //       }     
+      // }
 
       const handleProfile = () => {
             if(form.password !== null) {
@@ -230,12 +241,14 @@ function Profile() {
                                                
                                                 <div className="login col-sm-10 text-center">
                                                       <div className="mb-3">
+                                                            {/* <button  onClick={() => {handlePackage}} className="button1" type="button">Upgrade</button> */}
                                                             <button  onClick={() => {if(window.confirm('Update Profile  ?')){handleProfile()};}}  className="button1" type="button">Update Biodata</button>
                                                       </div>   
                                                       {/* <div className="mb-3">
                                                             <button  onClick={() => {console.log(user.id)}}  className="button1" type="button">Update Biodata</button>
                                                       </div>      */}
                                                 </div>
+
                                           </div>
                                     </div>
                               </div>      

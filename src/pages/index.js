@@ -29,6 +29,7 @@ import Testing from './Testing'
 import Agens from './Agens'
 import Sponsor from './Sponsor'
 
+
 export{
     Home,
     About,
@@ -59,5 +60,6 @@ export{
     DetailPackage,
     Testing,
     Agens,
-    Sponsor
+    Sponsor,
+
 }

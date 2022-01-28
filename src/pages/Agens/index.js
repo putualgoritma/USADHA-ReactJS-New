@@ -12,11 +12,13 @@ function Agens(props) {
     const [select, setSelect] = useState(null)
     const width  = window.innerWidth;
     const [dataForm, setDataForm] = useState(JSON.parse(sessionStorage.getItem('FORMREGIS'))) ;
+    const [dataFormActiv, setDataFormActiv] = useState(JSON.parse(sessionStorage.getItem('FORMACTIVASI'))) ;
     const [dataAgent,setDataAgent] = useState(null)
     const paket = JSON.parse(sessionStorage.getItem('PCART'));
     const activationType = JSON.parse(sessionStorage.getItem('ACTIVATIONTYPE'));
     const [TOKEN,setTOKEN] = useState(null);
-
+    const dataType = JSON.parse(sessionStorage.getItem('DATATYPE'));
+    const [idagents,setIdAgents]=useState(null);
 
     const getTOKEN =  async () => {
         let data =  await sessionStorage.getItem('TOKEN')
@@ -26,17 +28,54 @@ function Agens(props) {
   }
 
     const handleAgent = (a)=>{
+        if (dataType =='Jaringan'){
         setDataForm(
             { 
                   ...dataForm,
                   agents_id : a
                 
             })
+        }else{
+            setIdAgents(a) 
+        }
 
         setDataAgent(a)
       
     }
-   
+    
+    const logout = () => {
+          Promise.all([sessionStorage.removeItem('USER'),  sessionStorage.removeItem('TOKEN')]).then((result) => {
+                setTimeout(function () {
+                      setLoading(false)
+                      history.push('/login')
+                    //   history.goBack('/login')
+                  }, 2000); 
+          }).catch((e) => {
+                setLoading(false)
+                alert('logout failed')
+          })  
+    }
+
+    const handleActivasi =()=>{
+        let dataActivasi = dataFormActiv;
+        dataActivasi.cart = {item:paket};
+        dataActivasi.activationtype = activationType;
+        dataActivasi.agents_id = idagents;
+        API.activasinew(dataActivasi, TOKEN).then((result) => {
+            alert('activasi berhasil, silahkan login kembali')
+            logout()
+            // history.push(`/profile`)
+            setLoading(false)
+        }).catch((e) => {
+            console.log(e.request);
+            setLoading(false)
+            let mes = JSON.parse(e.request.response)
+            alert(mes.message)
+            console.log('gagal')
+            window.location.reload()
+        })
+        console.log('acti',dataActivasi)
+    }
 
     const handleRegisterDownline = ()=>{
         setLoading(true)
@@ -56,6 +95,11 @@ function Agens(props) {
                 console.log('gagal')
                 window.location.reload()
             })
+
+    }
+
+    const handleUpgrade = ()=>{
+        console.log('upgrade')
     }
 
     useEffect(() => {
@@ -119,23 +163,29 @@ function Agens(props) {
                                 )
                         })}
                     </div>
-                    {width < 450 &&
-                   
-                    <div className="login"  style={{width:'89%', position:'fixed', textAlign:'center', bottom:0, zIndex:10}}>
+                    {dataType == 'Activasi' &&
+                    <div className="login">
                         <div className="mb-3">
-                            {/* <button onClick={select ? () => history.push("/checkout/" + select) : () => alert('pilih agen terlebih dahulu')} className="button1" type="button">Lanjut</button> */}
-                            <button onClick={dataAgent != null ? handleRegisterDownline : () => alert('pilih agen terlebih dahulu') } className="button1" type="button">Registrasi Downline</button>
+                            <button onClick={dataAgent != null ? handleActivasi : () => alert('pilih agen terlebih dahulu') } className="button1" type="button">Activasi</button>
                         </div>     
-                    </div> 
-                    }
-                     {width >= 450 &&
+                    </div>  
+                    }  
+                    {dataType == 'Jaringan' &&
                     <div className="login">
                         <div className="mb-3">
                             <button onClick={dataAgent != null ? handleRegisterDownline : () => alert('pilih agen terlebih dahulu') } className="button1" type="button">Registrasi Downline</button>
                         </div>     
                     </div>  
                     }  
-                    {/* <button onClick={handleRegisterDownline}>CONSOLE</button> */}
+                    {dataType == 'Upgrade' &&
+                    <div className="login">
+                        <div className="mb-3">
+                            <button onClick={dataAgent != null ? handleUpgrade : () => alert('pilih agen terlebih dahulu') } className="button1" type="button">Registrasi Downline</button>
+                        </div>     
+                    </div>  
+                    }  
+
+                    <button onClick={handleRegisterDownline}>CONSOLE</button>
                 </div>
             </div>  
             <Footer/>

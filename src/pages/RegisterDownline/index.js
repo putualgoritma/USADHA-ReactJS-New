@@ -283,10 +283,13 @@ function RegisterDownline(props) {
             })   
       }
 
-      const handlePackage = ()=>{
+      const handlePackage = (props)=>{
             if(form.name !== null && form.address !==null && form.email !==null && form.password !==null && form.phone !==null && form.ref_id !=null){
                   if(form.password === confirm){
                         // onChangeForm('sponsor_id', form.ref_id)
+                        // props.datatype
+                        let dataType = 'Jaringan'
+                        sessionStorage.setItem('DATATYPE', JSON.stringify(dataType))   
                         sessionStorage.setItem('FORMREGIS', JSON.stringify(form))   
                         history.push('/Package')
                   }else{
