@@ -113,7 +113,7 @@ const Package=()=>{
     const [bvmin, setBvmin] = useState(0);
     const [bv, setBv] = useState(0);
     const [checkeddef, setCheckeddef] = useState(0);
-    const [dataType, setDataType] = useState('Jaringan');
+    // const [dataType, setDataType] = useState('Jaringan');
     const [status, setStatus] = useState('user');
     const [activationType, setActivationType] = useState(1);
     const [CART, setCART] = useState(null)
@@ -121,13 +121,14 @@ const Package=()=>{
     const [selected, setSelected] = useState(false)
     const paket = JSON.parse(sessionStorage.getItem('PCART'));
     const dataForm = JSON.parse(sessionStorage.getItem('FORMREGIS'));
+    const dataType = JSON.parse(sessionStorage.getItem('DATATYPE'));
+
     sessionStorage.setItem('DATATYPE', JSON.stringify(dataType));
   
     useEffect( () => {
       // setLoading(true);
         let isAmounted = false
         if(!isAmounted) {
-        
               axios.get('https://admin.belogherbal.com/api/close/activation-type',{
                     headers: {
                           cancelToken :'',
@@ -143,23 +144,23 @@ const Package=()=>{
                     if (dataType == 'Upgrade') {
                           console.log('Upgrade',dataType)
                           let dataActivations = res.data.data
-                          dataActivations.map((item, index) => {
-                                setName(item.name)
-                            if (item.id == dataForm.activations.id) {
-                              bvPrev = item.bv_min
-                            }
-                            if (item.id > dataForm.activations.id) {
-                              dataActivationsArr[index] = { id: item.id, name: item.name, type: item.type, bv_min: item.bv_min - bvPrev, bv_max: item.bv_max - bvPrev }
-                              if (firstSelected == 0 && checkeddef==0) {
-                                setStatus(item.name)
-                                setBvmin((item.bv_min - bvPrev)*1000)
-                                setActivationType(item.id)
-                                setCheckeddef(1)
-                                sessionStorage.setItem('ACTIVATIONTYPE', JSON.stringify(activationType));
-                              }
-                              firstSelected = firstSelected + 1
-                            }
-                          })
+                        //   dataActivations.map((item, index) => {
+                        //         setName(item.name)
+                        //     if (item.id == dataForm.activations.id) {
+                        //       bvPrev = item.bv_min
+                        //     }
+                        //     if (item.id > dataForm.activations.id) {
+                        //       dataActivationsArr[index] = { id: item.id, name: item.name, type: item.type, bv_min: item.bv_min - bvPrev, bv_max: item.bv_max - bvPrev }
+                        //       if (firstSelected == 0 && checkeddef==0) {
+                        //         setStatus(item.name)
+                        //         setBvmin((item.bv_min - bvPrev)*1000)
+                        //         setActivationType(item.id)
+                        //         setCheckeddef(1)
+                        //         sessionStorage.setItem('ACTIVATIONTYPE', JSON.stringify(activationType));
+                        //       }
+                        //       firstSelected = firstSelected + 1
+                        //     }
+                        //   })
                         } else {
                           console.log('Not Upgrade',dataType)
                           setActivations(res.data.data)
@@ -294,7 +295,7 @@ const Package=()=>{
                               <button onClick={() => bvmin > bv ? alert('BV kurang atau masih dibawah batasan minimum.') : paket == null ? alert('Keranjang Kosong') : history.push("/Agens")} className="button1" type="button">Checkout</button>
                               
                               {/* <button onClick={() => history.push("/Agens")} className="button1" type="button">Checkout</button> */}
-                              {/* <button onClick={()=>console.log('data activation',bvmin)}>CONSOLE</button> */}
+                              {/* <button onClick={()=>console.log('data type',dataType)}>CONSOLE</button> */}
                           </div> 
                       </div> 
                   </div>

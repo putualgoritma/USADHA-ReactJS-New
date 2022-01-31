@@ -51,7 +51,7 @@ function DetailPackage(props){
                 alert('mohon login terlebih dahulu')
                 history.push(`/login`)
           }else{
-                if(USER.status ==='active'){
+                // if(USER.status ==='active'){
                       if(CART !== null){
                             cartData = CART
                       }
@@ -85,10 +85,10 @@ function DetailPackage(props){
                       }else{
                             alert('produk sudah ada di keranjang')
                       }
-                }else{
-                      alert('Mohon Activasi Terlebih Dahulu')
-                      history.push('/profile')
-                }
+                // }else{
+                //       alert('Mohon Activasi Terlebih Dahulu')
+                //       history.push('/profile')
+                // }
           }
     }
     if(loading){

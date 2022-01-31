@@ -30,7 +30,7 @@ import {
     DetailPackage,
     Testing,
     Agens,
-    Sponsor
+    Sponsor,
 } from '../../pages';
 import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 

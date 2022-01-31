@@ -31,6 +31,7 @@ const activasi = (data, token) => Post(process.env.REACT_APP_API_ACTIVE, false, 
 const registerdownline = (data , token) => Post(process.env.REACT_APP_API_REGISTER_DOWNLINE, false,data,token);
 const memberlist = (data, token) => Post(process.env.REACT_APP_API_MEMBER_NEW, false,data,token);
 const registerdownlinenew = (data , token) => Post(process.env.REACT_APP_API_REGISTER_DOWNLINE_NEW, false,data,token);
+const activasinew = (data , token) => Post(process.env.REACT_APP_API_ACTIVATION, false,data,token);
 
 // PUT
 
@@ -60,7 +61,8 @@ const API = {
       memberlist,
       pointbalance,
       membertree,
-      registerdownlinenew
+      registerdownlinenew,
+      activasinew
 }
 
 export default API;
