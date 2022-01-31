@@ -198,8 +198,8 @@ const Header = (props)=>{
           Promise.all([sessionStorage.removeItem('USER'),  sessionStorage.removeItem('TOKEN')]).then((result) => {
                 setTimeout(function () {
                       setLoading(false)
-                    //   history.push('/login')
-                      history.goBack('/login')
+                      history.push('/login')
+                    //   history.goBack('/login')
                   }, 2000); 
           }).catch((e) => {
                 setLoading(false)

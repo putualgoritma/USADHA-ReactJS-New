@@ -89,6 +89,7 @@ function Profile() {
             setUSER( data)
             return data;
       }
+
       const getTOKEN =  async () => {
             let data =  await sessionStorage.getItem('TOKEN')
             data = JSON.parse(data)
@@ -108,17 +109,17 @@ function Profile() {
             })
       }
 
-      // const handlePackage = ()=>{
-      //       if(form.name !== null && form.address !==null && form.email !==null && form.phone !==null){
-      //             let dataType = 'Upgrade'
-      //             sessionStorage.setItem('DATATYPE', JSON.stringify(dataType))
-      //             sessionStorage.setItem('FORMUPGRADE', JSON.stringify(form))
-      //             history.push('/Package')
+      const handleProducts = ()=>{
+            if(form.name !== null && form.address !==null && form.email !==null && form.phone !==null){
+                  let dataType = 'Upgrade'
+                  sessionStorage.setItem('DATATYPE', JSON.stringify(dataType))
+                  sessionStorage.setItem('FORMUPGRADE', JSON.stringify(USER))
+                  history.push('/Package')
                
-      //       }else{
-      //             alert('mohon lengkapi data')
-      //       }     
-      // }
+            }else{
+                  alert('mohon lengkapi data')
+            }     
+      }
 
       const handleProfile = () => {
             if(form.password !== null) {
@@ -233,7 +234,8 @@ function Profile() {
                                           <div className="form-group row my-3">
                                                 <label htmlFor="type" className="col-sm-2 col-form-label">Type</label>
                                                 <div className="col-sm-10  d-flex align-items-center " >
-                                                      <div className='type-member'>{USER.type}</div>
+                                                      {/* <div className='type-member'>{USER.type}</div> */}
+                                                      <div className='type-member'>{USER.activations.name}</div>
                                                 </div>
                                           </div>
                                           <div className="form-group row my-3">
@@ -241,7 +243,8 @@ function Profile() {
                                                
                                                 <div className="login col-sm-10 text-center">
                                                       <div className="mb-3">
-                                                            {/* <button  onClick={() => {handlePackage}} className="button1" type="button">Upgrade</button> */}
+                                                            <button  onClick={handleProducts} className="button1" type="button">Upgrade</button>
+                                                             {/* <button  onClick={() => console.log(USER)} className="button1" type="button">Upgrade1</button> */}
                                                             <button  onClick={() => {if(window.confirm('Update Profile  ?')){handleProfile()};}}  className="button1" type="button">Update Biodata</button>
                                                       </div>   
                                                       {/* <div className="mb-3">

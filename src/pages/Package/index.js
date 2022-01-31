@@ -110,7 +110,7 @@ const Package=()=>{
     const history = useHistory()
     const [activations, setActivations] = useState([]);
     const [loading, setLoading] = useState(true)
-    const [bvmin, setBvmin] = useState(0);
+    const [bvmin, setBvmin] =  useState(JSON.parse(sessionStorage.getItem('BVMIN')))
     const [bv, setBv] = useState(0);
     const [checkeddef, setCheckeddef] = useState(0);
     // const [dataType, setDataType] = useState('Jaringan');
@@ -122,9 +122,18 @@ const Package=()=>{
     const paket = JSON.parse(sessionStorage.getItem('PCART'));
     const dataForm = JSON.parse(sessionStorage.getItem('FORMREGIS'));
     const dataType = JSON.parse(sessionStorage.getItem('DATATYPE'));
+    const dataUpgrade = JSON.parse(sessionStorage.getItem('FORMUPGRADE'));
 
     sessionStorage.setItem('DATATYPE', JSON.stringify(dataType));
   
+   const [radio, setRadio] = useState(JSON.parse(sessionStorage.getItem('RADIO')))
+   
+   const handleProducts=()=>{
+        sessionStorage.setItem('RADIO', JSON.stringify(radio));
+        sessionStorage.setItem('BVMIN', JSON.stringify(bvmin));
+        history.push('/Products')
+    }
+
     useEffect( () => {
       // setLoading(true);
         let isAmounted = false
@@ -144,23 +153,30 @@ const Package=()=>{
                     if (dataType == 'Upgrade') {
                           console.log('Upgrade',dataType)
                           let dataActivations = res.data.data
-                        //   dataActivations.map((item, index) => {
-                        //         setName(item.name)
-                        //     if (item.id == dataForm.activations.id) {
-                        //       bvPrev = item.bv_min
-                        //     }
-                        //     if (item.id > dataForm.activations.id) {
-                        //       dataActivationsArr[index] = { id: item.id, name: item.name, type: item.type, bv_min: item.bv_min - bvPrev, bv_max: item.bv_max - bvPrev }
-                        //       if (firstSelected == 0 && checkeddef==0) {
-                        //         setStatus(item.name)
-                        //         setBvmin((item.bv_min - bvPrev)*1000)
-                        //         setActivationType(item.id)
-                        //         setCheckeddef(1)
-                        //         sessionStorage.setItem('ACTIVATIONTYPE', JSON.stringify(activationType));
-                        //       }
-                        //       firstSelected = firstSelected + 1
-                        //     }
-                        //   })
+                        //   console.log('dataActivations',dataActivations)
+                          dataActivations.map((item, index) => {
+                              console.log('data from item id',dataUpgrade.activations.id)
+
+                                // setName(item.name)
+                            if (item.id == dataUpgrade.activations.id) {
+                              bvPrev = item.bv_min
+                            }
+                            if (item.id > dataUpgrade.activations.id) {
+                              dataActivationsArr[index] = { id: item.id, name: item.name, type: item.type, bv_min: item.bv_min - bvPrev, bv_max: item.bv_max - bvPrev }
+                              if (firstSelected == 0 && checkeddef==0) {
+                                setRadio(item.name)
+                                setBvmin((item.bv_min - bvPrev)*1000)
+                                setActivationType(item.id)
+                             
+                                setCheckeddef(1)
+                               
+                              }
+                              firstSelected = firstSelected + 1
+                            }
+                          })
+                          sessionStorage.setItem('ACTIVATIONTYPE', JSON.stringify(activationType));
+                          setActivations(dataActivationsArr)
+                          console.log('hehe',dataActivationsArr)
                         } else {
                           console.log('Not Upgrade',dataType)
                           setActivations(res.data.data)
@@ -225,8 +241,8 @@ const Package=()=>{
                         <div> 
                                 <input type="radio" value={item.name} 
                                 style={{width:17, height:17}}
-                                checked={status == item.name}
-                                onClick={() => checkBvmin(bv_min, item.id, setStatus(item.name))}
+                                checked={radio != null ? radio == item.name : status == item.name}
+                                onClick={() => checkBvmin(bv_min, item.id,setRadio(item.name),setStatus(item.name))}
                                 /> 
                                 <label className="form-check-label" htmlFor="flexCheckChecked" style={{fontWeight:500, fontSize:14, paddingLeft:20, paddingBottom:8}}>
                                     Paket {nama_paket}({item.id != 4 ? item.bv_min +' - '+ item.bv_max : 'min '+Numformat(item.bv_min)} bv)
@@ -289,13 +305,13 @@ const Package=()=>{
                       <div className='row'>
                           <div className="mb-3">
                                 {/* <button onClick={() =>{console.log('form',dataForm)}} className="button1" type="button">PCART</button>                                       */}
-                              <Link to={"/products"}> <button   className="button1" type="submit">Tambah</button></Link>
+                              <button   className="button1" type="submit" onClick={handleProducts}>Tambah</button>
                               <span style={{margin:15}}></span>
                                             
                               <button onClick={() => bvmin > bv ? alert('BV kurang atau masih dibawah batasan minimum.') : paket == null ? alert('Keranjang Kosong') : history.push("/Agens")} className="button1" type="button">Checkout</button>
                               
                               {/* <button onClick={() => history.push("/Agens")} className="button1" type="button">Checkout</button> */}
-                              {/* <button onClick={()=>console.log('data type',dataType)}>CONSOLE</button> */}
+                              <button onClick={()=>console.log('status',activationType)}>CONSOLE</button>
                           </div> 
                       </div> 
                   </div>

@@ -120,9 +120,9 @@ const Products=(props)=>{
                                                             <div className="action-bot">
                                                                 <div className="wrap-addtocart" key={item.id} onClick={() => setSelect(item.id)}>
                                                                     
-                                                                    <a  href={'/DetailPackage/' + item.id} className="btn-cart" title="Add to Cart">
+                                                                    <a  href={'/DetailPackage/' + item.id} className="btn-cart" title="Add to Package">
                                                                         <i className="fa fa-shopping-cart"/>
-                                                                        <span>Add to Cart</span>
+                                                                        <span>Add to Package</span>
                                                                     </a>
                                                                 </div>
                                                                 <div className="actions">
@@ -135,7 +135,7 @@ const Products=(props)=>{
                                                 )
                                                 }) }
                                                     <div className="mb-3">
-                                                        {/* <button className="button1" type="button" onClick={()=>console.log(dataForm,dataType)}>terima</button> */}
+                                                        {/* <button className="button1" type="button" onClick={()=>console.log(JSON.parse(sessionStorage.getItem('RADIO')))}>terima</button> */}
                                                         {/* <button className="button1" type="button" onClick={select ? () => history.push("/package/" + select) : () => alert('pilih Product dahulu')}>Tambah</button> */}
                                                     </div> 
                                             </div>
