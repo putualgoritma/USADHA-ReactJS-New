@@ -36,6 +36,13 @@ function Agens(props) {
                   agents_id : a
                 
             })
+        }else if (dataType=='Upgrade'){
+            setDataFormUpgrade(
+                {
+                    ...dataFormUpgrade,
+                    agents_id : a
+                }
+            )
         }else{
             setIdAgents(a) 
         }
@@ -138,7 +145,7 @@ function Agens(props) {
             alert(mes.message)
             // alert ('upgrade gagal')
             console.log('gagal')
-            window.location.reload()
+            // window.location.reload()
         })
     }
 
@@ -225,7 +232,7 @@ function Agens(props) {
                     </div>  
                     }  
 
-                    {/* <button onClick={handleRegisterDownline}>CONSOLE</button> */}
+                    {/* <button onClick={()=>console.log("type",activationType)}>CONSOLE</button> */}
                 </div>
             </div>  
             <Footer/>

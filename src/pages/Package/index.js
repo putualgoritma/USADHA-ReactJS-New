@@ -125,7 +125,8 @@ const Package=()=>{
     const dataUpgrade = JSON.parse(sessionStorage.getItem('FORMUPGRADE'));
 
     sessionStorage.setItem('DATATYPE', JSON.stringify(dataType));
-  
+    sessionStorage.setItem('ACTIVATIONTYPE', JSON.stringify(activationType));
+
    const [radio, setRadio] = useState(JSON.parse(sessionStorage.getItem('RADIO')))
    
    const handleProducts=()=>{
@@ -167,13 +168,14 @@ const Package=()=>{
                                 setRadio(item.name)
                                 setBvmin((item.bv_min - bvPrev)*1000)
                                 setActivationType(item.id)
-                             
+                                sessionStorage.setItem('ACTIVATIONTYPE', JSON.stringify(activationType));
                                 setCheckeddef(1)
                                
                               }
                               firstSelected = firstSelected + 1
                             }
                           })
+                        //   console.log('dataactivation',activationType)
                           sessionStorage.setItem('ACTIVATIONTYPE', JSON.stringify(activationType));
                           setActivations(dataActivationsArr)
                           console.log('hehe',dataActivationsArr)
@@ -311,7 +313,7 @@ const Package=()=>{
                               <button onClick={() => bvmin > bv ? alert('BV kurang atau masih dibawah batasan minimum.') : paket == null ? alert('Keranjang Kosong') : history.push("/Agens")} className="button1" type="button">Checkout</button>
                               
                               {/* <button onClick={() => history.push("/Agens")} className="button1" type="button">Checkout</button> */}
-                              <button onClick={()=>console.log('status',activationType)}>CONSOLE</button>
+                              {/* <button onClick={()=>console.log('status',activationType)}>CONSOLE</button> */}
                           </div> 
                       </div> 
                   </div>
