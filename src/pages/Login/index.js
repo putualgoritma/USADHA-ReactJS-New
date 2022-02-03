@@ -51,6 +51,7 @@ const Login = ()=>{
                         })
                         setLoading(false)
                         history.push("/");
+                        window.location.reload()
                         // history.goBack("/");
                         
                   }).catch((e) => {

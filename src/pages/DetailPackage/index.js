@@ -166,8 +166,8 @@ function DetailPackage(props){
                                                                 <h5>{product.description}</h5>
                                                             </div>
                                                             <div className="actions">
-                                                                <button className="btn-cart" title="Add to Cart" data-id="qv_item_8" onClick={() => handleCart()}>
-                                                                    Add to Cart
+                                                                <button className="btn-cart" title="Add to Package" data-id="qv_item_8" onClick={() => handleCart()}>
+                                                                    Add to Package
                                                                 </button>
                                                             </div>
                                                             <div className="addthis_native_toolbox"/>
