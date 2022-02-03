@@ -165,7 +165,10 @@ function Checkout(props) {
                               API.order(orders, TOKEN).then((result) => {
                                    console.log(result)
                                    sessionStorage.removeItem('CART')
-                                   history.push(`/landing/checkout sukses/home`)
+                                //    history.push(`/landing/checkout sukses/home`)
+                                    alert('Sukses')
+                                    history.push("/");
+                                   window.location.reload()
                                    setLoading(false)
                               }).catch((e) => {
                                     console.log(e.request)

@@ -120,7 +120,9 @@ function HistoryOrderDetail() {
             setLoading(true)
             API.historyordercancel(HISTORY.id, TOKEN).then((result) => {
                   // console.log(result);
-                  history.push(`/landing/${result.message}/historyorder`)
+                //   history.push(`/landing/${result.message}/historyorder`)
+                history.push("/");
+                window.location.reload()
             }).catch((e) => {
                   console.log(e.request);
                   alert('pesanan gagal di batalkan')
@@ -132,7 +134,9 @@ function HistoryOrderDetail() {
             setLoading(true)
             API.historyorderupdate(HISTORY.id, TOKEN).then((result) => {
                   // console.log(result);
-                  history.push(`/landing/${result.message}/historyorder`)
+                //   history.push(`/landing/${result.message}/historyorder`)
+                  history.push("/");
+                  window.location.reload()
             }).catch((e) => {
                   console.log(e.request);
                   alert('pesanan gagal di konfirmasi, coba ulang!')

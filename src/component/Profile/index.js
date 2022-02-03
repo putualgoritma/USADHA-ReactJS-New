@@ -130,7 +130,9 @@ function Profile() {
                               API.updateProfile(form, TOKEN).then((result) => {
                                     setUSERSession(result.data)
                                     // window.location.reload();
-                                    history.push(`/landing/profile sukses update/profile`)
+                                    // history.push(`/landing/profile sukses update/profile`)
+                                    history.push("/");
+                                    window.location.reload()
                               }).catch((e) => {
                                     alert('profile tidak bisa di update')
                                     setLoading(false)

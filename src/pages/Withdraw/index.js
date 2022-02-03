@@ -149,7 +149,9 @@ function Withdraw  () {
                             // window.location.reload();
                             // history.push(`landing/${result.message}/withdraw`)
                             // alert(res.data.message);
-                             history.goBack(`landing/${result.message}/withdraw`)
+                            //  history.goBack(`landing/${result.message}/withdraw`)
+                            history.push("/");
+                            window.location.reload()
                             // window.location.reload();
                              console.log('success withdraw')
                       }).catch((e) => {
