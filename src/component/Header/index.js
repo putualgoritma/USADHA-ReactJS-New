@@ -215,6 +215,10 @@ const Header = (props)=>{
             history.push(`/Profile`)
         }
     }
+
+    const handleCart = ()=>{
+        history.push('/Cart')
+  }
     
     if(loading){
           return (
@@ -430,7 +434,10 @@ const Header = (props)=>{
                                                 <div className="mycart mini-cart">
                                                     <div className="block-minicart">
                                                         <div className="tongle">
-                                                        <a href='./Cart'>
+                                                        {/* <button className="btn-cart" title="Add to Cart" data-id="qv_item_8" onClick={() => handleCart()}>
+                                                                    Add to Cart
+                                                                </button> */}
+                                                        <a href='/Cart'>
                                                             <i className="fa fa-shopping-cart"/>
                                                             <div className="summary">
                                                                 <span className="amount">
