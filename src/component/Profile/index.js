@@ -207,7 +207,7 @@ function Profile() {
                                           <a href={USER.ref_link}>{USER.ref_link}</a>
                                           <p></p>
                                           <div style={{display:'flex', alignItems:'center ', justifyContent:'center'}}>
-                                                <span style={{flex:1,cursor:'pointer'}} onClick={() => {navigator.clipboard.writeText(textToCopy)}}>
+                                                <span style={{flex:1,cursor:'pointer'}} onClick={() => {navigator.clipboard.writeText(USER.ref_link)}}>
                                                       {/* <button  onClick={() => {navigator.clipboard.writeText(textToCopy)}}> */}
                                                       
                                                       <img src={Copy} alt='gambar' style={{width:20, height:20}} />
