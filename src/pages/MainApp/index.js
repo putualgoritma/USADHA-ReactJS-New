@@ -31,6 +31,7 @@ import {
     Testing,
     Agens,
     Sponsor,
+    Tree
 } from '../../pages';
 import HistoryOrderDetail from '../../component/HistoryOrderDetail';
 
@@ -41,6 +42,9 @@ const MainApp = () =>{
                 {/* <Route path='/products/:id'>
                     <Products/>
                 </Route> */}
+                <Route path="/Tree">
+                    <Tree/>
+                </Route>
                 <Route path="/Sponsor">
                     <Sponsor/>
                 </Route>

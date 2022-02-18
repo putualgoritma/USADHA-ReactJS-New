@@ -52,6 +52,11 @@ import Management4 from './images/management/mng4.png'
 import Management5 from './images/management/mng5.png'
 import Management6 from './images/management/mng6.png'
 import BannerAgen from './images/banner-agen.jpg'
+import ActiveUser from './images/tree/avatartree.png'
+import InActiveUser from './images/tree/avatartreepasif.png'
+import AvatarTree from './images/tree/avatar.png'
+import Expand from './images/tree/expand.png'
+import ExpandTop from './images/tree/expandtop.png'
 
 export {
     Logo,
@@ -107,6 +112,10 @@ export {
     Management4,
     Management5,
     Management6,
-    BannerAgen
-    
+    BannerAgen,
+    ActiveUser,
+    InActiveUser,
+    AvatarTree,
+    Expand,
+    ExpandTop
 }

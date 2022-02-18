@@ -76,6 +76,12 @@ const ItemSideBar = (props) => {
               <span className="links_name">Konversi</span>
             </a>
           </li>
+          <li>
+            <a href="/Tree">
+              <i className="bx bxs-tree" />
+              <span className="links_name">Pohon Jaringan</span>
+            </a>
+          </li>
           {props.logout}
         </ul>
       </div>
