@@ -28,6 +28,7 @@ import DetailPackage from './DetailPackage'
 import Testing from './Testing'
 import Agens from './Agens'
 import Sponsor from './Sponsor'
+import Tree from  './Tree'
 
 
 export{
@@ -61,5 +62,5 @@ export{
     Testing,
     Agens,
     Sponsor,
-
+    Tree
 }

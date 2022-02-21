@@ -318,8 +318,11 @@ const Package=()=>{
                       </div> 
                   </div>
                 </div>
+                <Footer/>
             </div>
+            
         </div>
+       
     </Fragment>
     )
 }
